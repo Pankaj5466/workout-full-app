@@ -1,11 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import SignUpPage from './pages/SignUpPage';
+import SingleWorkoutRow from './pages/SingleWorkoutRow';
 
 function App() {
-  return (
-    // <h1>App Component</h1>
+  return ( <>
+    
       <SignUpPage/>
+      <hr/>
+      <SingleWorkoutRow/>
+      </>
   );
 }
 

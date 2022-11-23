@@ -35,6 +35,9 @@ const SignUpPage = () => {
         console.log('form submit pressed\n');
 
         //console.log(e.target); //This is whole forum object (we can extract all {name,value} pair if we desire using .map on formObject)
+
+        //TO-DO: check validity & show user feedback if value not as per expected
+        //TO-DO: connect to backend 
     }
     return <div className='singUpWrap'>
         <form onSubmit={handleSubmitButton}>
