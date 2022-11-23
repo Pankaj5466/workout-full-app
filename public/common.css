@@ -1,0 +1,10 @@
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+form label{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}

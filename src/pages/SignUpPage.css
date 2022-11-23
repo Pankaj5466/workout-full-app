@@ -1,0 +1,19 @@
+
+.signUpWrap{
+    width: 100%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+form label{
+    display: block;
+    width: 100%;
+    align-items: center;
+}
+
+form label span{
+    margin-right: 40px;
+}
