@@ -8,3 +8,33 @@ form label{
     display: flex;
     align-items: center;
 }
+
+.main-body{
+    margin: auto;
+    width: 80%;
+    border: 1px solid rgb(1, 12, 1);
+    padding: 10px;
+}
+
+/* Targeting SingleExcerciseRow */
+.entry{
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid rgb(1, 12, 1);
+    margin: 10px;
+}
+
+/* .main_info h2 a{
+ color: rebeccapurple;
+} */
+
+/* TO-DO: find why  .main_info.exercise_meta not working*/
+.exercise_meta{
+    color: green;
+}
+
+
+.thumbnails{
+    width: 100px;
+    height: 100px;
+}

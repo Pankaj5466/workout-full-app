@@ -19,6 +19,7 @@ const SingleWorkoutRow = (props) => {
 
         <img src="https://fitnessprogramer.com/wp-content/uploads/2022/07/overhead-shrug.gif" alt="Overhead Shrug"/>
 
+        {/* Clicking it should open a dynamic-url , with excercise-id as params(so that page will display that)  */}
         <button type="button" className="btn btn-primary">View Details</button>
         <button type = 'button' className = 'btn btn-secondary ml-3' href="https://fitnessprogramer.com/login-register/">
             Add 

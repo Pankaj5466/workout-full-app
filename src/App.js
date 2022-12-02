@@ -1,15 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
 import SignUpPage from './pages/SignUpPage';
 import SingleWorkoutRow from './pages/SingleWorkoutRow';
+import {Routes,Route, BrowserRouter} from 'react-router-dom'
+import NewWorkoutPlan from './components/workout/NewWorkoutPlan';
 
 function App() {
   return ( <>
-    
-      <SignUpPage/>
-      <hr/>
-      <SingleWorkoutRow/>
-      </>
+
+  {/* TO-DO: Add Navigation Menu Here */}
+
+  <div className='main-body'>
+    <BrowserRouter>
+        <Routes>
+          <Route path='/sign-up' element = {<SignUpPage/>} />
+
+          <Route path='/single-workout-row' element = {<SingleWorkoutRow/>} />
+
+          <Route path='/new-workout-plan' element = {<NewWorkoutPlan/>} />
+        </Routes>
+    </BrowserRouter>
+  </div>
+    </>
   );
 }
 

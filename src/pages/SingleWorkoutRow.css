@@ -1,11 +1,4 @@
-.entry {
-    padding-left: 9999px;
-    padding-right: 9999px;
-    margin-left: -9999px;
-    margin-right: -9999px;
-    display: flex;
-    flex-direction: column;
-  }
+
 
   .singleWorkout{
     display: flex;
@@ -19,6 +12,4 @@
     margin-left:350px;
   }
 
-  a{
-    style:no-underlien;
-  }
+
