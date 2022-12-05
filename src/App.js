@@ -1,4 +1,3 @@
-import './App.css';
 import SignUpPage from './pages/SignUpPage';
 import SingleWorkoutRow from './pages/SingleWorkoutRow';
 import {Routes,Route, BrowserRouter} from 'react-router-dom'
@@ -10,6 +9,7 @@ function App() {
   {/* TO-DO: Add Navigation Menu Here */}
 
   <div className='main-body'>
+    <h1>App.js File</h1>
     <BrowserRouter>
         <Routes>
           <Route path='/sign-up' element = {<SignUpPage/>} />

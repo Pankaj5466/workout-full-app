@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import SingleWorkoutViewRow from "./SingleWorkoutViewRow";
 import excerciseList from "../../sample-data/data";
 import DaySelector from "./DaySelector";
