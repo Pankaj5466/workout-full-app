@@ -2,8 +2,13 @@ import {useSelector} from '../../hooks-store/store'
 
 const SingleWorkoutViewRow = ({ eID }) => {
     const e = useSelector()
-                .exerciseList.find(e => e.eID === eID);
-                
+                .es.exerciseList.find(e => e.eID === eID);
+
+    if(e===undefined){
+        console.error(`Could not find requested ${eID} details`);
+        return <></>;
+    }
+
     return (
         <article id="exercise-17100" className="entry">
 
