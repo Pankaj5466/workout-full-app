@@ -7,7 +7,7 @@ const ExerciseList = () => {
         { value: 'Back/Wing', label: 'Back/Wing' },
     ];
 
-    const exerciseList = ['12','14','15']; //list of excerciseID
+    const exerciseList = ['17097','5678','31520']; //list of excerciseID
 
     return (
         <>
@@ -38,10 +38,10 @@ const ExerciseList = () => {
                 </label>
             </div>
 
-            {/* <section>
+            <section>
                { exerciseList.map(eID => 
                     <SingleWorkoutViewRow eID={eID} key = {eID}/>)}
-            </section> */}
+            </section>
 
         </>
     )

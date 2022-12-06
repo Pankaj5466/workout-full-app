@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { act } from "react-dom/test-utils";
 
 /* using variable let will limit the variable scope to this file only*/
 let globalState = {};

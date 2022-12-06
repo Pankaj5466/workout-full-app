@@ -1,6 +1,9 @@
+import {useSelector} from '../../hooks-store/store'
 
-const SingleWorkoutViewRow = ({ e }) => {
-    console.log(e);
+const SingleWorkoutViewRow = ({ eID }) => {
+    const e = useSelector()
+                .exerciseList.find(e => e.eID === eID);
+                
     return (
         <article id="exercise-17100" className="entry">
 
