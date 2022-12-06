@@ -11,7 +11,6 @@ const ExerciseList = () => {
 
     return (
         <>
-
             <div className='d-flex justify-content-around'>
                 <label>Target Muscle:
                     <Select options={targetMuscleOptions}
@@ -39,10 +38,10 @@ const ExerciseList = () => {
                 </label>
             </div>
 
-            <section>
+            {/* <section>
                { exerciseList.map(eID => 
                     <SingleWorkoutViewRow eID={eID} key = {eID}/>)}
-            </section>
+            </section> */}
 
         </>
     )
