@@ -38,3 +38,32 @@ form label{
     width: 100px;
     height: 100px;
 }
+
+.title_bar {
+    background: #2a2a2a no-repeat center center;
+    background-size: cover;
+    color: #FFF;
+    padding: 60px 0;
+}
+.theme_canvas {
+    width: 87%;
+    margin: 0 auto;
+}
+.title_bar .page_title {
+    font-size: 2.3em;
+    margin: 0;
+}
+.title_bar .page_subtitle {
+    margin: 8px 0 0;
+    color: #b3b3b3;
+    font-size: 1.15em;
+}
+
+.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+ul{
+   list-style: none;
+}
