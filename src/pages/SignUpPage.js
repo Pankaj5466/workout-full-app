@@ -1,56 +1,54 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import './SignUpPage.css'
 
 const SignUpPage = () => {
+  const [userDetail, setUserDetail] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    dob: '',
+    gender: '',
+    height: 0,
+    weight: 0,
+    goal: '',
+    activity: ''
+  })
 
-    const [userDetail,setUserDetail] = useState({
-        firstName:"",
-        lastName:"",
-        email:"",
-        dob:"",
-        gender:'',
-        height:0,
-        weight:0,
-        goal:'',
-        activity:'',
-    });
+  const hanleUserInputChange = (e) => {
+    setUserDetail({
+      ...userDetail,
+      [e.target.name]: e.target.value
+    })
+  }
 
-    const hanleUserInputChange = (e)=>{
-        setUserDetail({
-            ...userDetail,
-            [e.target.name]:e.target.value
-        });
+  useEffect(() => {
+    console.log(userDetail)
+  }, [userDetail])
 
-    }
+  const handleSubmitButton = (e) => {
+    // ValidationExample1: Validate onSubmit ButtonPress && Enable label
+    // Validation2: Validate email as user type them
+    // Validation3: make seperate input component , which handle {validation,errorText,onBlur}
+    e.preventDefault()
+    console.log('form submit pressed\n')
 
-    useEffect(()=>{
-        console.log(userDetail);
-    },[userDetail])
+    // console.log(e.target); //This is whole forum object (we can extract all {name,value} pair if we desire using .map on formObject)
 
-    const handleSubmitButton = (e) => {
-        //ValidationExample1: Validate onSubmit ButtonPress && Enable label
-        //Validation2: Validate email as user type them
-        //Validation3: make seperate input component , which handle {validation,errorText,onBlur}
-        e.preventDefault();
-        console.log('form submit pressed\n');
-
-        //console.log(e.target); //This is whole forum object (we can extract all {name,value} pair if we desire using .map on formObject)
-
-        //TO-DO: check validity & show user feedback if value not as per expected
-        //TO-DO: connect to backend 
-    }
-    return <div className='singUpWrap'>
+    // TO-DO: check validity & show user feedback if value not as per expected
+    // TO-DO: connect to backend
+  }
+  return <div className='singUpWrap'>
         <form onSubmit={handleSubmitButton}>
 
             <label>
                 <span>First Name: </span>
-                <input type='text' name='firstName' value={userDetail.firstName} 
+                <input type='text' name='firstName' value={userDetail.firstName}
                     onChange={hanleUserInputChange}/>
             </label>
 
             <label>
                 <span>Last Name: </span>
-                <input type='text' name='lastName' value={userDetail.lastName} 
+                <input type='text' name='lastName' value={userDetail.lastName}
                     onChange={hanleUserInputChange}
                 />
             </label>
@@ -79,13 +77,13 @@ const SignUpPage = () => {
 
             <label>
                 <span>Height</span>
-                <input type="number" name="height" min="0" max='200' autoComplete="off" required="" 
+                <input type="number" name="height" min="0" max='200' autoComplete="off" required=""
                 value={userDetail.height} onChange={hanleUserInputChange}/>
                 <i>cm</i>
             </label>
             <label>
                 <span>Weight</span>
-                <input type="number" name="weight" min="0" autoComplete="off" required="" 
+                <input type="number" name="weight" min="0" autoComplete="off" required=""
                 value={userDetail.weight} onChange={hanleUserInputChange}/><i>kg</i>
             </label>
 
@@ -111,13 +109,12 @@ const SignUpPage = () => {
                     <option value="extra-active">Extra active (intense exercise and active job)</option>
                 </select>
             </label>
-            
+
             {/* This will link it to formSumbit handler */}
             <button type="submit">Submit</button>
 
         </form>
     </div>
-
 }
 
-export default SignUpPage;
+export default SignUpPage

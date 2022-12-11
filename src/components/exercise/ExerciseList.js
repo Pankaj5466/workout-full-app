@@ -1,15 +1,14 @@
 import Select from 'react-select'
-import SingleWorkoutViewRow from '../workout/SingleWorkoutViewRow';
+import SingleWorkoutViewRow from '../workout/SingleWorkoutViewRow'
 const ExerciseList = () => {
+  const targetMuscleOptions = [
+    { value: 'abs', label: 'abs' },
+    { value: 'Back/Wing', label: 'Back/Wing' }
+  ]
 
-    const targetMuscleOptions = [
-        { value: 'abs', label: 'abs' },
-        { value: 'Back/Wing', label: 'Back/Wing' },
-    ];
+  const exerciseList = ['17097', '5678', '31520'] // list of excerciseID
 
-    const exerciseList = ['17097','5678','31520']; //list of excerciseID
-
-    return (
+  return (
         <>
             <div className='d-flex justify-content-around'>
                 <label>Target Muscle:
@@ -18,7 +17,7 @@ const ExerciseList = () => {
                         isClearable={true}
                         placeholder='Target Muscle'
                         onChange={(entry) => {
-                            console.log(entry);
+                          console.log(entry)
                         }}
                     />
                 </label>
@@ -39,12 +38,12 @@ const ExerciseList = () => {
             </div>
 
             <section>
-               { exerciseList.map(eID => 
+               { exerciseList.map(eID =>
                     <SingleWorkoutViewRow eID={eID} key = {eID}/>)}
             </section>
 
         </>
-    )
+  )
 }
 
-export default ExerciseList;
+export default ExerciseList

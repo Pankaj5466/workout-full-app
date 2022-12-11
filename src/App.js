@@ -1,11 +1,11 @@
-import SignUpPage from './pages/SignUpPage';
-import {Routes,Route, BrowserRouter} from 'react-router-dom'
-import ExerciseList from './components/exercise/ExerciseList';
-import ExceciseView from './components/exercise/ExerciseView';
-import CreateDayPlan from './components/dayPlan/CreateDayPlan';
+import SignUpPage from './pages/SignUpPage'
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import ExerciseList from './components/exercise/ExerciseList'
+import ExceciseView from './components/exercise/ExerciseView'
+import CreateDayPlan from './components/dayPlan/CreateDayPlan'
 
-function App() {
-  return ( <>
+function App () {
+  return (<>
 
   {/* TO-DO: Add Navigation Menu Here */}
 
@@ -27,7 +27,7 @@ function App() {
     </BrowserRouter>
   </div>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

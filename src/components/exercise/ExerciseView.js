@@ -1,32 +1,28 @@
-import { useLocation, useMatch, useParams } from 'react-router-dom';
-import { useSelector } from '../../hooks-store/store';
-
+import { useParams } from 'react-router-dom'
+import { useSelector } from '../../hooks-store/store'
 
 const ExceciseView = (props) => {
+//   const location = useLocation()
+  const params = useParams()
 
-    const location = useLocation();
-    const params = useParams();
+  const { excerciseID } = params
+  console.log('excerciseID: ', excerciseID)
 
-    const { excerciseID } = params;
-    console.log('excerciseID: ', excerciseID);
+  // Now we get the excerciseDetails.
+  // Get the corresponding details for excercise using backend-query & display on this page
 
-    //Now we get the excerciseDetails. 
-    //Get the corresponding details for excercise using backend-query & display on this page
+  const e = useSelector()
+    .es.exerciseList.find(e => e.eID === '5678')
 
-    const e = useSelector()
-        .es.exerciseList.find(e => e.eID === '5678');
+  const ex = {
+    ...e,
+    benifits: ['yes', 'no', 'benfits']
 
-    const ex = {
-        ...e,
-        benifits: ['yes', 'no', 'benfits']
+  }
 
-    }
+  console.log(ex)
 
-    console.log(ex);
-
-
-
-    return (
+  return (
         <>
             <div className="title_bar">
                 <div className="theme_canvas">
@@ -34,7 +30,7 @@ const ExceciseView = (props) => {
                     <h1 className="page_title">Pull-Up</h1>
 
                     <div className="page_subtitle">
-                        Exercise / Back / Wing		</div>
+                        Exercise / Back / Wing</div>
 
                 </div>
             </div>
@@ -49,7 +45,7 @@ const ExceciseView = (props) => {
                         <div className='m-2'>
                             <h7>Muscle Group:</h7>
                             <ul>
-                                {ex.pMuscleGroup.map(m => <li>{m}</li>)}
+                                {ex.pMuscleGroup.map(m => <li key = {m}>{m}</li>)}
                             </ul>
 
                             <h7>Equipment</h7>
@@ -62,7 +58,6 @@ const ExceciseView = (props) => {
 
                         </div>
                     </div>
-
 
                     <h6 > Pull-Up Benifits</h6>
                     <ul>
@@ -79,14 +74,12 @@ const ExceciseView = (props) => {
 
                     </div>
 
-
                 </div>
 
             </div>
 
-
         </>
-    )
+  )
 }
 
-export default ExceciseView;
+export default ExceciseView
