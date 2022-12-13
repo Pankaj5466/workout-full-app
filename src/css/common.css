@@ -1,0 +1,36 @@
+.signUpWrap{
+    width: 60%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+form label{
+    display: block;
+    width: 100%;
+    align-items: center;
+}
+
+form label span{
+    margin-right: 40px;
+}
+
+
+
+.singleWorkout{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+  }
+
+  .singleWorkout img{
+    width: 100px;
+    height: 100px;
+    margin-left:350px;
+  }
+
+  .dashboard h2{
+    color:rgb(123, 12, 12)
+  }

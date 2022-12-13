@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import './SignUpPage.css'
 
 const SignUpPage = () => {
   const [userDetail, setUserDetail] = useState({

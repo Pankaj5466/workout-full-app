@@ -29,6 +29,9 @@ module.exports = {
 
     "no-unused-vars": "off", // Temp off
     "quotes": 0,
-    "quote-props": 0
+    "quote-props": 0,
+    "indent": 0,
+    "padded-blocks": 0,
+    "no-trailing-spaces": 0
   }
 }
