@@ -1,24 +1,26 @@
-import { useReducer, useState } from "react";
+import {  useState } from "react";
 import Calendar from "../components/Calendar";
 import CreateDayPlan from "../components/dayPlan/CreateDayPlan";
 import Card from "../components/Card";
 
-const exerciseEditorReducer = () =>{
-
-}
 const WorkoutPlan = () => {
-    const [selectedDay,setSelectedDay] = useState(2);
-    const [dayID,setDayID] = useState('');
-
-    const [exerciseIDList,setExcericseList] = useReducer(exerciseEditorReducer);
+    const [selectedDay,setSelectedDay] = useState({
+        day:'01',
+        month:'12',
+        year:'2022'
+    });
 
     const handleDaySelect = (date) => {
         console.log('User selected ', date);
-
         setSelectedDay(date);
-
-        setDayID('13/12/2022');
     }
+
+    //can we wrapped around useCallback
+    // const dayID = () => { //derived data, so derive from already used state
+    //     return `${selectedDay.day}/${selectedDay.month}/${selectedDay.year}`;
+    // }
+
+    const dayID = `${selectedDay.day}/${selectedDay.month}/${selectedDay.year}`;
 
     return (<Card>
         <p>WorkoutPlan Page</p>

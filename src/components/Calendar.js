@@ -1,9 +1,8 @@
 import '../css/calendar.css'
+
 const Calendar = ({handleDaySelect,selectedDay}) => {
     const dayList = Array.from({length:30}, (_,i)=> i+1);
     
-    const activeDayClass = (selectedDay)
-
     return (
         <div className="calendar">
             <div className="month">
@@ -23,10 +22,15 @@ const Calendar = ({handleDaySelect,selectedDay}) => {
             </ul>
 
             <ul className="days"
-                onClick={(e) => handleDaySelect(e.target.value)}
+                onClick={(e) => handleDaySelect({
+                    day:e.target.value,
+                    month:'12',
+                    year:'2022'
+                
+                })}
             >
                 {dayList.map(day => <li key = {day} value={day}
-                    className = {`${day === selectedDay ? 'active' : ''}`}
+                    className = {`${day === selectedDay.day ? 'active' : ''}`}
                 >{day} </li>)}                
             </ul>
         </div>

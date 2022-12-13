@@ -4,3 +4,6 @@
 
 - From ExerciseList page, clicking on any Excersie will change URL to of view & pass ID as parameter
 - Utilizing data-* attribute to set something in HTML elemtn(like ID or other data) & use them on some operation (ex: onClick)
+
+-exerciseList = exerciseList.workoutState.find(item => item.dayID === props.dayID)
+                ?.exerciseList || [];

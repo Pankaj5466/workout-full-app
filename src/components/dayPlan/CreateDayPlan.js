@@ -8,11 +8,10 @@ const CreateDayPlan = (props) => {
   const [showAddUserModal, setShowAddUserModal] = useState(false)
 
   let exerciseList = useSelector().ws;
-  exerciseList = exerciseList.workoutState.find(item => item.dayID === '13/12/22').exerciseList;
-  console.log('exercixeList: ',exerciseList);
-
-  // exerciseList = ['17097', '5678', '31520'];
-
+  exerciseList = exerciseList.workoutState.find(item => item.dayID === props.dayID)
+                ?.exerciseList || [];
+  //IMP ABOVE:  in case exerciseList is undefined, taking or will convert it to empty array (so that .map will return valid JSX)
+  
   const addExcerciseHandler = (e) => {
     console.log('addExerciseHandler')
     setShowAddUserModal(true)
@@ -41,7 +40,7 @@ const CreateDayPlan = (props) => {
     console.log('handling addExercieCLick');
 
     dispatch('ADD_EXERCISE',{
-      dayID:'13/12/22',
+      dayID:props.dayID,
       eID
     });
 

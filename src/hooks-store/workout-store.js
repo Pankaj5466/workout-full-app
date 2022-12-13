@@ -19,7 +19,10 @@ const initalWorkoutPlan = [
 
     },
     { 'dayKeyID2': [] },
-    { 'dayID':'13/12/22',
+    { 'dayID':'13/12/2022',
+     'exerciseList': ['17097', '5678', '31520','17097'] 
+    },
+    { 'dayID':'01/12/2022',
      'exerciseList': ['17097', '5678', '31520','17097'] 
     },
 
