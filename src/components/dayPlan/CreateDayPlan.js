@@ -4,14 +4,16 @@ import { useState } from 'react'
 import ExerciseList from '../exercise/ExerciseList'
 import Button from '../UI/Button'
 import { useDispatch, useSelector } from '../../hooks-store/store'
+import CreateExerciseModal from '../../modals/CreateExerciseModal'
 const CreateDayPlan = (props) => {
   const [showAddUserModal, setShowAddUserModal] = useState(false)
+  const [showCreateExerciseModal,setShowCreateExerciseModal] = useState(false);
 
   let exerciseList = useSelector().ws;
   exerciseList = exerciseList.workoutState.find(item => item.dayID === props.dayID)
                 ?.exerciseList || [];
   //IMP ABOVE:  in case exerciseList is undefined, taking or will convert it to empty array (so that .map will return valid JSX)
-  
+
   const addExcerciseHandler = (e) => {
     console.log('addExerciseHandler')
     setShowAddUserModal(true)
@@ -49,8 +51,8 @@ const CreateDayPlan = (props) => {
     <div className="container flex justify-content-center">
         <div className="d-flex">
             <ul>
-                {exerciseList.map(eID => <div key = {eID} className="d-flex">
-                    <SingleWorkoutViewRow eID={eID} key={eID} />
+                {exerciseList.map((eID,index) => <div key={`${eID}_${index}`} className="d-flex">
+                    <SingleWorkoutViewRow  eID={eID} />
 
                     <Button data-eid={eID} onClick={() => handleReorderOperation('up', eID)}>Up </Button>
                     <Button data-eid={eID} onClick={() => handleReorderOperation('down', eID)}>Down </Button>
@@ -61,6 +63,13 @@ const CreateDayPlan = (props) => {
         </div>
         <button className="btn btn-secondary justify-content-center"
             onClick={addExcerciseHandler}>Add</button>
+            <Button>Hello2</Button>
+
+        <Button 
+          onClick = { () => {
+              setShowCreateExerciseModal(!showCreateExerciseModal)
+          }}
+          > Create Exercise</Button>
     </div>
 
   const closeModalHandler = () => {
@@ -74,6 +83,8 @@ const CreateDayPlan = (props) => {
         <>
         {dayPlanComponent}
         { showAddUserModal && <Modal title = 'Select Exercise' content = {<ExerciseList handleAddExercise = {handleAddExercise}/>} buttonName = 'Add Excerise(s)' onConfirm = {closeModalHandler}/> }
+        { showCreateExerciseModal && <Modal title = 'Create Exercie' content = {<CreateExerciseModal/>} buttonName = 'Create' onConfirm = {()=>{}} /> }
+        {/* { true && <p>Create Exercize</p>} */}
         </>
   )
 }

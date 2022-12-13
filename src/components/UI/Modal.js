@@ -14,7 +14,7 @@ const ModalOverlay = (props) => {
           <h2>{props.title}</h2>
         </header>
         <div className={classes.content}>
-          <p>{props.content}</p>
+          {props.content}
         </div>
         <footer className={classes.actions}>
           <Button onClick={props.onConfirm}>{props.buttonName}</Button>

@@ -2,6 +2,7 @@ import {  useState } from "react";
 import Calendar from "../components/Calendar";
 import CreateDayPlan from "../components/dayPlan/CreateDayPlan";
 import Card from "../components/Card";
+import Button from "../components/UI/Button";
 
 const WorkoutPlan = () => {
     const [selectedDay,setSelectedDay] = useState({
@@ -20,10 +21,10 @@ const WorkoutPlan = () => {
     //     return `${selectedDay.day}/${selectedDay.month}/${selectedDay.year}`;
     // }
 
+    //dayID is derivedData
     const dayID = `${selectedDay.day}/${selectedDay.month}/${selectedDay.year}`;
 
     return (<Card>
-        <p>WorkoutPlan Page</p>
         <Calendar handleDaySelect={handleDaySelect} selectedDay = {selectedDay}/>
         <p>Plan For Selected Date is below: </p>
 
@@ -31,6 +32,14 @@ const WorkoutPlan = () => {
             handleAddExercise ={(eID)=>{
             console.log('Exercise ID: ',eID);
         }}/>
+
+
+         <Button onClick = {
+            ()=>{
+                console.log('TO-DO: link to backend call for creation of workout')
+            }
+         }>Create Workout</Button>
+        <Button>Edit Workout / Save Workout</Button>
     </Card>)
 }
 
