@@ -1,13 +1,17 @@
 import SingleWorkoutViewRow from '../workout/SingleWorkoutViewRow'
-import Card from '../Card'
 import Modal from '../UI/Modal'
 import { useState } from 'react'
 import ExerciseList from '../exercise/ExerciseList'
 import Button from '../UI/Button'
+import { useDispatch, useSelector } from '../../hooks-store/store'
 const CreateDayPlan = (props) => {
   const [showAddUserModal, setShowAddUserModal] = useState(false)
 
-  const [exerciseList, setExcericseList] = useState(['17097', '5678', '31520']) // list of excerciseID
+  let exerciseList = useSelector().ws;
+  exerciseList = exerciseList.workoutState.find(item => item.dayID === '13/12/22').exerciseList;
+  console.log('exercixeList: ',exerciseList);
+
+  // exerciseList = ['17097', '5678', '31520'];
 
   const addExcerciseHandler = (e) => {
     console.log('addExerciseHandler')
@@ -28,10 +32,22 @@ const CreateDayPlan = (props) => {
 
     newExerciseList = [...exerciseList.slice(0, idx), ...exerciseList.slice(idx, idx + 1), ...exerciseList.slice(idx + 1)]
     console.log(newExerciseList)
-    setExcericseList(newExerciseList);
+    // setExcericseList(newExerciseList);
+  }
+
+  const dispatch = useDispatch();
+
+  const handleAddExercise = (eID) => {
+    console.log('handling addExercieCLick');
+
+    dispatch('ADD_EXERCISE',{
+      dayID:'13/12/22',
+      eID
+    });
+
   }
   const dayPlanComponent =
-    <Card className="container flex justify-content-center">
+    <div className="container flex justify-content-center">
         <div className="d-flex">
             <ul>
                 {exerciseList.map(eID => <div key = {eID} className="d-flex">
@@ -46,7 +62,7 @@ const CreateDayPlan = (props) => {
         </div>
         <button className="btn btn-secondary justify-content-center"
             onClick={addExcerciseHandler}>Add</button>
-    </Card>
+    </div>
 
   const closeModalHandler = () => {
     console.log('close modal handler called\n')
@@ -58,7 +74,7 @@ const CreateDayPlan = (props) => {
   return (
         <>
         {dayPlanComponent}
-        { showAddUserModal && <Modal title = 'Select Exercise' content = {<ExerciseList/>} buttonName = 'Add Excerise(s)' onConfirm = {closeModalHandler}/> }
+        { showAddUserModal && <Modal title = 'Select Exercise' content = {<ExerciseList handleAddExercise = {handleAddExercise}/>} buttonName = 'Add Excerise(s)' onConfirm = {closeModalHandler}/> }
         </>
   )
 }

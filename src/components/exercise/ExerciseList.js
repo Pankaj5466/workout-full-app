@@ -1,6 +1,6 @@
 import Select from 'react-select'
 import SingleWorkoutViewRow from '../workout/SingleWorkoutViewRow'
-const ExerciseList = () => {
+const ExerciseList = (props) => {
   const targetMuscleOptions = [
     { value: 'abs', label: 'abs' },
     { value: 'Back/Wing', label: 'Back/Wing' }
@@ -39,7 +39,10 @@ const ExerciseList = () => {
 
             <section>
                { exerciseList.map(eID =>
-                    <SingleWorkoutViewRow eID={eID} key = {eID}/>)}
+                <div key = {eID}  
+                  onClick = {() => props.handleAddExercise(eID)}>
+                    <SingleWorkoutViewRow eID={eID}/>
+                  </div>)}
             </section>
 
         </>
