@@ -56,3 +56,9 @@
     background: #1abc9c;
     color: white !important
   }
+
+  .active {
+    padding: 5px;
+    background: #1abc9c;
+    color: white !important
+  }
