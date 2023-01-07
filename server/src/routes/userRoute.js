@@ -12,9 +12,11 @@ router.get('/', (req,res)=>{
 router.get('/db',async (req,res,next)=>{
     console.log('will test db query\n');
 
-    const x = await db.query('SELECT *');
+    const x = await db.query('SELECT * FROM test');
 
-    return res.status(200).send('Testin DB Connection\n');
+    return res.status(200).send(x.rows[0]);
+
+    // return res.status(200).send('Testin DB Connection\n');
 })
 
 
