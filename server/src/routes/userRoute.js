@@ -9,4 +9,8 @@ router.get('/', (req,res)=>{
 })
 
 
+router.post('/user/creatUser', (req,res)=>{
+    console.log('request to create user\n');
+})
+
 module.exports = router;

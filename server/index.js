@@ -8,7 +8,7 @@ const port = process.env.PORT || 8080;
 
 
 app.use(express.json());
-app.use(userRouter);
+app.use(userRouter); //use routes defined passed to express
 
 app.listen(port, () => {
     console.log(`server is up and running on port ${port}`);
