@@ -1,1 +1,7 @@
 confidential.md
+
+#Ignore mac config folder
+*.DS_Store
+
+# Ignore a temporary file at any folder depth
+.$* 
