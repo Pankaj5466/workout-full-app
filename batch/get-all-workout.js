@@ -35,8 +35,8 @@ const getAllWorkoutHtmlData = async (URL,excerciseList) => {
     }
 }
 
-const downloadHTML =async(url)=>{
-    console.log(url);
+const downloadHTML =async(index,url)=>{
+    console.log(index,url);
     
     try{
         const data = await axios.get(url);
@@ -81,26 +81,7 @@ const downloadExcerciseURLList = async () => {
     });
 }
 
-const main = async() =>{
-    // var listExist = false;
-    // if(listExist === false)
-        // await downloadExcerciseURLList();
-
-    
-        const filePath  = path.join(__dirname) + '/all-excercise-url.js';
-        
-        const file = fs.readFileSync(filePath);
-        const list = JSON.parse(file);
-        console.log(list[0].split('/').at(-2));
-
-
-        for(let i=0;i<2;i++)
-            await downloadHTML(list[i]);
-        
-        console.log("Success is savign all HTML\n");
-    
-
-
+const getWorkoutDataFromHTML  = async () =>{
     const fileList = fs.readdirSync( path.join(__dirname) +  '/exercise-html-downloads/');
 
     let workoutData = [];
@@ -113,20 +94,42 @@ const main = async() =>{
 
             const obj = await readWorkoutHTML(filePath);
             workoutData.push(obj);
+            
         }
         catch(e){
-            console.log("ERROR happened in reading of ",fileList[i]);
+            console.log("cannot read HTML: ",i,fileList[i]);
         }    
     }
 
     fs.writeFile('excercise-object.js',JSON.stringify(workoutData),()=>{});
     console.log(workoutData.at(-1));
+}
+const downloadWorkoutHTML = async() =>{
+    // var listExist = false;
+    // if(listExist === false)
+        // await downloadExcerciseURLList();
+
+    
+        const filePath  = path.join(__dirname) + '/all-excercise-url.js';
+        
+        const file = fs.readFileSync(filePath);
+        const list = JSON.parse(file);
+        console.log(list[0].split('/').at(-2));
 
 
-
+        for(let i=0;i<list.length;i++)
+            await downloadHTML(i,list[i]);
+        
+        console.log("Success is savign all HTML\n");
 
 }
 
+const main = async () =>{
+
+    console.log('Start: Main\n');
+    //await downloadWorkoutHTML();
+    await getWorkoutDataFromHTML();
+}
 listExist = true;
 main();
 

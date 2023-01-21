@@ -117,9 +117,7 @@ const readWorkoutHTML = async (fileName) =>{
 
     }catch(e)
     {
-        console.log("Error Happed during workout get");
-        console.log(e);
-
+        throw e;
     }
 }
 
