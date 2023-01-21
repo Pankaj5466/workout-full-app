@@ -5,16 +5,16 @@
 -- Create exercise table
 CREATE TABLE exercise_table (
 	eID INT PRIMARY KEY,
-	title VARCHAR(50),
-	subtitle VARCHAR(50),
+	title text,
+	subtitle text,
 	guide TEXT [],
-	img_href VARCHAR(50),
-	img_alt VARCHAR(25),
+	img_href text,
+	img_alt text,
 	pmusclegroup TEXT [],
 	equipment text[],
 	
-	target_muscle_img VARCHAR(50),
-	target_muslce_alt VARCHAR(50)
+	target_muscle_img text,
+	target_muslce_alt text
 )
 
 -- Create day_table

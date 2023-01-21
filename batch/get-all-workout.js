@@ -2,7 +2,8 @@ const axios = require('axios');
 const { getWorkoutPageURL } = require('./url-config');
 const fs = require('fs');
 const { fileURLToPath } = require('url');
-const {readWorkoutHTML} = require('./single-workout')
+const {readWorkoutHTML} = require('./single-workout');
+const path = require('path');
 
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
@@ -41,14 +42,18 @@ const downloadHTML =async(url)=>{
         const data = await axios.get(url);
         const html = data.data;
 
-        const fileName = url.split('/').at(-2);
+        const fileName = path.join(__dirname + '/exercise-html-downloads/') +  url.split('/').at(-2);
         
-        fs.writeFile(`list/${fileName}.html`,html,()=>{
+        fs.writeFileSync(`${fileName}.html`,html);
+        /*
+        fs.writeFile(`${fileName}.html`,html,()=>{
            
         });
+        */
 
     }catch(e){
         console.log(`ERROR is download of ${url}`);
+        console.log(e);
     }
 }
 
@@ -81,25 +86,27 @@ const main = async() =>{
     // if(listExist === false)
         // await downloadExcerciseURLList();
 
-    /* 
-        const file = fs.readFileSync('all-excercise-url.js');
+    
+        const filePath  = path.join(__dirname) + '/all-excercise-url.js';
+        
+        const file = fs.readFileSync(filePath);
         const list = JSON.parse(file);
         console.log(list[0].split('/').at(-2));
 
 
-        for(let i=0;i<list.length;i++)
+        for(let i=0;i<2;i++)
             await downloadHTML(list[i]);
         
         console.log("Success is savign all HTML\n");
-    */
+    
 
 
-    const fileList = fs.readdirSync('list/');
+    const fileList = fs.readdirSync( path.join(__dirname) +  '/exercise-html-downloads/');
 
     let workoutData = [];
-    for(let i=1;i<50;i++)
+    for(let i=1;i<fileList.length;i++)
     {
-        const filePath = `list/${fileList[i]}`;
+        const filePath =  path.join(__dirname, '/exercise-html-downloads/') +  fileList[i];
         // console.log(`filePath = ${filePath}`);
 
         try{
