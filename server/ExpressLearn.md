@@ -1,0 +1,7 @@
+- All available methode & api on res & req objecg
+https://expressjs.com/
+
+- writing express middleware
+ [writing-middlewar](https://expressjs.com/en/guide/writing-middleware.html)
+ [using-middleware](https://expressjs.com/en/guide/using-middleware.html)
+ex: writing logger, cookie validator, time estimations and much more!

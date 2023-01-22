@@ -1,5 +1,5 @@
 # exercise_table API
--  '/exercise/get-exercise' -> exerciseObject
+-  GET '/exercise/get-exercise' -> exerciseObject
 -
 
 # workout (single day workout)
