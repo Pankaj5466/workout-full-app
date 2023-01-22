@@ -16,7 +16,7 @@ TABLE: workout_plan_table(pID,content:[wID array],name,description, goal:['lose-
 - 'workout-plan/edit-plan' -> {}
 
 # workout/workout-plan/exercise Tracking creator 
-TABLE creator_table(uID,type{eID,wID,pID},iD, private?) 
+TABLE creator_table(creator_id,user_id,content_type,content_id,public?)
 // (a) who has created this iD(wID/eID/pID) 
 // (b) is is private created?
 

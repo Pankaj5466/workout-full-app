@@ -50,14 +50,43 @@ CREATE TABLE progress_table(
 
 
 -- Create usertable
-CREATE TABLE user_table(
-	uID SERIAL PRIMARY KEY,
-	firstName VARCHAR(20),
-	lastName VARCHAR(20),
-	email VARCHAR(50),
-	age INT NOT NULL
-)
+//latest postgresql
+CREATE TABLE user_table (
+    user_id SERIAL PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    age INTEGER,
+    weight INTEGER,
+    height INTEGER,
+    gender ENUM('male', 'female', 'other'),
+    goal ENUM('weight_loss', 'muscle_gain', 'maintenance'),
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now()
+);
 
+CREATE TABLE user_table (
+    user_id SERIAL PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    age INTEGER,
+    weight INTEGER,
+    height INTEGER,
+    gender VARCHAR(255),
+    goal VARCHAR(255),
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now(),
+    CHECK (gender IN ('male', 'female', 'other'))
+);
+
+-- Creator Table
+CREATE TABLE creator_table(
+	creator_id SERIAL PRIMARY KEY,
+	user_id INT,
+	content_type text,
+	content_id INT
+)
 -- Specifying FK https://stackoverflow.com/questions/28558920/postgresql-foreign-key-syntax
 
 CREATE TABLE progress_relation_table(

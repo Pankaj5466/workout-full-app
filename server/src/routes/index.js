@@ -6,7 +6,7 @@ const workout = require('./workout');
 const workoutPlan = require('./workout-plan');
  
 module.exports = (app) => {
-  app.use('/users', user);
+  app.use('/user', user);
   app.use('/exercise',exercise);
 
   app.use('/workout',workout);

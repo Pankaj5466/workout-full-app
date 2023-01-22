@@ -34,6 +34,7 @@ console.log(req.session); //get
 app.use(entryLogger);
 app.use(exitLogger);
 
+
 // app.use(userRouter); //use routes defined passed to express
 mountRoutes(app);
 

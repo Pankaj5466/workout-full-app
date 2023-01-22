@@ -25,23 +25,41 @@ router.get('/get-workout',async(req,res,next)=>{
 
 router.post('/save-workout',async (req,res,next)=>{
     console.log('ENTER /save-workout');
+    const {body} = req; //or body = req.body;
+    const client = await db.getClient();
 
     try{
-        const {body} = req; //or body = req.body;
+        
+        console.log('Start of transaction')
+        // await client.query('BEGIN');
+        await client.query('BEGIN')
 
-        const x = await db.query('INSERT INTO workout_table(name,description,difficulty,content)\
+        //(a) update workout table
+        const result = await client.query('INSERT INTO workout_table(name,description,difficulty,content)\
                 VALUES($1,$2,$3,$4)\
                 RETURNING wID',
                 [body.name,body.description,body.difficulty,body.content]);
-    
+        const workout_id = result.rows.at(0).wid;
+        //(b) update creator_table
+        const y  = await client.query('INSERT INTO creator_table(user_id,content_type,content_id)\
+                    VALUES($1,$2,$3)\
+                    RETURNING *',
+                    [req.session.user_id || 0, 'workout_id', workout_id]);
+                
+        await client.query('COMMIT');
         res.status(201).send({
             status:"success",
-            wID:x.rows.at(0).wid});
+            "workout_id":workout_id,
+            "creator_id":y.rows.at(0).creator_id,
+            });
 
     }catch(e){
         console.log('ERROR happened during save-workout');
+        await client.query('ROLLBACK');
         return res.status(500).send(e);
-    };
+    }finally{
+        client.release();
+    }
 });
 
 router.patch('/edit-workout',async (req,res,next)=>{
