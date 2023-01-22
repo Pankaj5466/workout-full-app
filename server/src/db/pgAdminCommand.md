@@ -17,12 +17,13 @@ CREATE TABLE exercise_table (
 	target_muslce_alt text
 )
 
--- Create day_table
-CREATE TABLE day_table(
-	dID INT PRIMARY KEY,
+-- Create workout_table
+CREATE TABLE workout_table(
+	dID SERIAL PRIMARY KEY,
 	name text NOT NULL,
 	description text,
-	exerciselist INT []
+	difficulty text,
+	content INT []
 )
 
 INSERT INTO day_table(dID,name,description,exerciselist)
