@@ -1,5 +1,10 @@
 
 const entryLogger = (req,res,next)=>{
+    
+    req.session.uID = 'mew';
+    console.log('session object',req.session)
+
+
     const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
     console.log('\t::ENTER: ',fullUrl);
     next();
