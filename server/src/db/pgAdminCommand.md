@@ -31,6 +31,16 @@ VALUES
 (123,'chest-workout','NA',ARRAY[12,23,45,56])
 
 
+-- Create workout_plan_table
+CREATE TABLE workout_plan_table(
+	pID SERIAL PRIMARY KEY,
+	name text NOT NULL,
+	description text,
+	difficulty text,
+	goal text,
+	content INT []
+)
+
 -- Create progress table
 CREATE TABLE progress_table(
 	pID INT PRIMARY KEY,
