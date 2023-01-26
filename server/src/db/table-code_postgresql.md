@@ -134,3 +134,19 @@ If the progress data should be retained even if the user is deleted, then the fo
 
 ## IMP: above sql code is generated with ChatGPT
 Tell your requirement & attribute, and relations and entity to GPT and it will generate the PostGreSQL code for you.
+
+## Code to insert/update/delete etc
+
+```sql
+-- user table
+
+--insertion
+INSERT INTO users(email,password,name,age,weight,height,gender,goal)
+VALUES('pankaj.54666@gmail.com','Pankaj.9204', 'Pankaj Kumar', 27,73,170,'male','be fit')
+
+
+--insertion into workout_plan
+INSERT INTO workout_plan(name,description,user_id)
+VALUES('jan-workout','test workoutout plan', 1)
+
+```
