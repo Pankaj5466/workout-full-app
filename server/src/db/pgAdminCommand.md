@@ -4,7 +4,7 @@
 
 -- Create exercise table
 CREATE TABLE exercise_table (
-	eID INT PRIMARY KEY,
+	eID INT PRIMARY KEY, //change to exercise_id
 	title text,
 	subtitle text,
 	guide TEXT [],
@@ -88,11 +88,30 @@ CREATE TABLE creator_table(
 	content_id INT
 )
 -- Specifying FK https://stackoverflow.com/questions/28558920/postgresql-foreign-key-syntax
+-- Progres relation table
 
+```sql
 CREATE TABLE progress_relation_table(
-	pID INTEGER REFERENCES progress_table(pID) NOT NULL,
-	uID INTEGER REFERENCES user_table(uID) NOT NULL,
-	eID INTEGER REFERENCES exercise_table,
-	dID INTEGER REFERENCES day_table
-)
+	progress_relation_id SERIAL PRIMARY KEY,
+	user_id INT NOT NULL,
+	workout_id INT NOT NULL,
+	plan_id INT NOT NULL,
+	exercise_id INT NOT NULL,
+	progress_id INT NOT NULL);
+```
+-- Progress Table
+```sql
+    CREATE TABLE progress_table (
+    progress_id SERIAL PRIMARY KEY,
+	
+    date TIMESTAMP NOT NULL,
+    sets INTEGER NOT NULL,
+    reps INTEGER NOT NULL,
+    weight INTEGER,
+    notes TEXT,
+    created_at TIMESTAMP DEFAULT now()
+);
+
+```
+
 ```
