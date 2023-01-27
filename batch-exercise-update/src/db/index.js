@@ -10,7 +10,7 @@ const pool = new Pool({
     max: 20,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,
-    database: 'app-db'
+    database: 'app-db-2'
   })
   
 

@@ -23,22 +23,45 @@ const update = async () =>{
     console.log('ENTER: update');
     
 
-    // const x = await db.query('SELECT * FROM user_table');
-    await db.query('TRUNCATE TABLE exercise_table');
-    // console.log(x.rows);
-    // return x.rows;
+    // await db.query('TRUNCATE TABLE exercises');
 
     const exerciseList = getExerciseObject();
+    const flatArray=(arr)=>{
+        if(arr.length == 0)
+            return '';
+        return arr.reduce((p,c)=>p+"c"+c);
+    }
 
     for(let i=0;i<exerciseList.length;i++)
     {
         const obj = exerciseList[i];
         console.log(chalk.blue.bgRed.bold('INSERTING : '),obj.eID);
+
+        const ex = {
+            id:obj.eID,
+            title:obj.pageTitle,
+            subtitle:obj.pageSubTitle,
+            guide:obj.guide.length==0 ? "": obj.guide.reduce((prev,curValue) => prev + "," +curValue ),
+            img:`${obj.img.href},${obj.img.alt}`,
+            primary_muscle_group:flatArray(obj.pMuscleGroup),
+            equipment:flatArray(obj.equipment),
+            target_muscle:obj.targetMuscle.length == 0? '': obj.targetMuscle.map(eq => eq.name+","+eq.percentage).reduce((p,c)=>p+";"+c),
+
+            target_muscle_img:obj.targetMuscleImg == undefined ? '' : obj.targetMuscleImg.src+","+obj.targetMuscleImg.alt+","+obj.targetMuscleImg.title,
+            difficulty_level:0,
+            video:'',
+            source:'',
+            user_rating:0
+        }
+
         
         try{
             const y = await db.query(
-                'INSERT INTO exercise_table(eID, title,subtitle,guide,img_href,img_alt,pmusclegroup,equipment,target_muscle_img,target_muslce_alt) VALUES($1, $2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *',
-                [obj.eID,obj.pageTitle,obj.pageSubTitle,obj.guide,obj.img.href,obj.img.alt,obj.pMuscleGroup,obj.equipment,obj.targetMuscleImg?.src,obj.targetMuscleImg?.alt]
+                'INSERT INTO exercises(id, title,subtitle,guide,img,primary_muscle_group,equipment,target_muscle\
+                    , target_muscle_img,difficulty_level,video,source,user_rating)\
+                 VALUES($1, $2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING *',
+                [ex.id,ex.title,ex.subtitle,ex.guide,ex.img,ex.primary_muscle_group,ex.equipment,ex.target_muscle,
+                    ex.target_muscle_img,ex.difficulty_level,ex.video,ex.source,ex.user_rating]
             )
 
             /*
@@ -70,3 +93,10 @@ const main = () =>{
 main();
 
 // getExerciseObject();
+
+/*
+
+INSERT INTO exercises(id, title,subtitle,guide,img,primary_muscle_group,equipment,target_muscle
+                    , target_muscle_img,difficulty_level,video,source,user_rating)
+VALUES(123,'','','','','','','','','','','',0)
+*/
