@@ -13,6 +13,8 @@ JOIN workout_has_exercises whe ON whe.workout_id = w.id
 JOIN user_exercise ue ON ue.id = whe.user_exercise_id
 WHERE w.id = 18
 */
+
+//TO-DO: apply user.id check, so that we return data of that user-id only
 router.get('/get',async(req,res,next)=>{
     try
     {
@@ -121,9 +123,33 @@ router.patch('/update',async (req,res,next)=>{
         console.log('ERROR happened during edit-workout\n');
         return res.status(500).send(e);
     }
-
 })
 
+//-- DELETE FROM workout WHERE id = 19
+router.delete('/delete',async(req,res)=>{
+    try{
+        const {id} = req;
+
+        await db.query(`DELETE FROM ${WORKOUT_TABLE} WHERE id = $1`,[id]);
+
+        return res.status(200).send('success');
+    }catch(e){
+        console.log('ERROR: in delete');
+        return res.status(500).send(e);
+    }
+})
+
+//TO-DO: apply admin middleware , so that only admin in authroize to do this task
+
+router.get('/get-all',async(req,res)=>{
+    try{
+        const {rows:allWorkout} = await db.query('SELECT * FROM workout');
+        return res.status(200).send(allWorkout);
+    }catch(e){
+        console.log('ERROR in getting all workoutid');
+        return res.status(500).send(e);
+    }
+})
 
 
 
