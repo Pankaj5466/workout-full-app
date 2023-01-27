@@ -2,6 +2,8 @@ const express = require('express');
 const db = require('../db');
 const router = new express.Router();
 
+const USER_TABLE = 'users';
+
 
 router.get('/', (req,res)=>{
     console.log('Insider user route\n');
@@ -9,12 +11,12 @@ router.get('/', (req,res)=>{
     res.status(200).send('Hello There\n');
 })
 
-router.get('/getAllUsers',async (req,res,next)=>{
+router.get('/get-all-user',async (req,res,next)=>{
     console.log('will test db query\n');
 
     try{
 
-        const x = await db.query('SELECT * FROM user_table');
+        const x = await db.query(`SELECT * FROM ${USER_TABLE}`);
 
         return res.status(200).send(x.rows);
     }catch(e){
@@ -31,11 +33,13 @@ router.post('/sign-up', async (req,res)=>{
     
     try{
 
-        const x = await db.query('INSERT INTO user_table(email,password,name,age,weight,height,gender,goal)\
-                    VALUES($1,$2,$3,$4,$5,$6,$7,$8)',
+        const x = await db.query(`INSERT INTO ${USER_TABLE}(email,password,name,age,weight,height,gender,goal)\
+                    VALUES($1,$2,$3,$4,$5,$6,$7,$8)\
+                    RETURNING *`,
                     [user.email,user.password,user.name,user.age,user.weight,user.height,user.gender,user.goal]);
         return res.status(201).send({
-            status:'created-user successfully'
+            status:'created-user successfully',
+            id:x.rows.at(0).id
         })
 
                 
@@ -47,7 +51,7 @@ router.post('/sign-up', async (req,res)=>{
 
 router.get('/sign-in',async (req,res,next)=>{
     try{
-        const x = await db.query('SELECT * FROM user_table WHERE email=$1',
+        const x = await db.query(`SELECT * FROM ${USER_TABLE} WHERE email=$1`,
                     [req.body.email]);
         
         if(x.rows.at(0).password === req.body.password)
