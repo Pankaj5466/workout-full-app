@@ -100,17 +100,17 @@ CREATE TABLE workout_has_exercises (
 
 -- user_complete table
 CREATE TABLE user_complete (
-    id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id),
-    exercise_id INTEGER REFERENCES user_exercise(id),
+    user_exercise_id INTEGER REFERENCES user_exercise(id),
     date DATE,
     user_difficulty INTEGER,
-    time_to_complete INTEGER,
     calorie INTEGER,
     weight FLOAT,
     rating INTEGER,
-    duration INTEGER
+    duration INTEGER,
+    PRIMARY KEY (user_id, user_exercise_id)
 );
+
 
 
 
