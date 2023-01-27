@@ -58,7 +58,7 @@ CREATE TABLE workout (
 
 --Exercise table
 CREATE TABLE exercises (
-    id SERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     subtitle VARCHAR(255) NOT NULL,
     guide TEXT NOT NULL,
@@ -95,11 +95,7 @@ CREATE TABLE user_exercise (
 CREATE TABLE workout_has_exercises (
     id SERIAL PRIMARY KEY,
     workout_id INTEGER REFERENCES workout(id) ON DELETE CASCADE,
-    exercise_id INTEGER REFERENCES exercises(id) ON DELETE CASCADE,
-    reps INTEGER,
-    sets INTEGER,
-    set_complete_time INTEGER,
-    set_gap_time INTEGER
+    user_exercise_id INTEGER REFERENCES user_exercise(id) ON DELETE CASCADE
 );
 
 -- user_complete table
