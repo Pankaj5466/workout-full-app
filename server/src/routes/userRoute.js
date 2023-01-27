@@ -2,7 +2,7 @@ const express = require('express');
 const db = require('../db');
 const router = new express.Router();
 
-const USER_TABLE = 'users';
+const USER_TABLE = db.table.USER_TABLE;
 
 
 router.get('/', (req,res)=>{

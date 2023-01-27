@@ -2,7 +2,7 @@ const express = require('express');
 const db = require('../db');
 const router = new express.Router();
 
-const USER_COMPLETE_TABLE = 'user_complete';
+const USER_COMPLETE_TABLE = db.table.USER_COMPLETE_TABLE;
 
 router.put('/update-user-exercise-progress',async (req,res,next)=>{
     try{

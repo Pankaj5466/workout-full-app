@@ -2,9 +2,9 @@ const express = require('express');
 const db = require('../db');
 const router = new express.Router();
 
-const WORKOUT_TABLE = 'workout';
-const WORKOUT_HAS_EXERCISE_TABLE = 'workout_has_exercises';
-const USER_EXERCISE = 'user_exercise';
+const WORKOUT_TABLE = db.table.WORKOUT_TABLE;
+const WORKOUT_HAS_EXERCISE_TABLE = db.table.WORKOUT_HAS_EXERCISE_TABLE;
+const USER_EXERCISE = db.table.USER_EXERCISE_TABLE;
 
 /*
 SELECT ue.*

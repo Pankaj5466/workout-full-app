@@ -110,7 +110,7 @@ CREATE TABLE user_complete (
     duration INTEGER,
     PRIMARY KEY (user_id, user_exercise_id)
 );
-
+ 
 
 
 

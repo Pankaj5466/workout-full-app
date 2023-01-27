@@ -3,13 +3,13 @@ const db = require('../db');
 const router = new express.Router();
 
 
-const WORKOUT_TABLE ='workout_plan';
+const WOKROUT_PLAN_TABLE =db.table.WOKROUT_PLAN_TABLE;
 router.get('/get', async (req,res,next)=>{
     const user_id = req.body.user_id;
 
     try{
     
-        const x = await db.query(`SELECT * FROM ${WORKOUT_TABLE} WHERE user_id = $1`,
+        const x = await db.query(`SELECT * FROM ${WOKROUT_PLAN_TABLE} WHERE user_id = $1`,
                     [user_id]);
         return res.status(200).send({
             status:'success',
@@ -26,7 +26,7 @@ router.patch('/edit', async(req,res,next)=>{
 
     try{
 
-        const x = await db.query(`UPDATE ${WORKOUT_TABLE}\
+        const x = await db.query(`UPDATE ${WOKROUT_PLAN_TABLE}\
                         SET name=$1 , description=$2\
                         WHERE id=$3 \
                         RETURNING *`,
@@ -44,7 +44,7 @@ router.post('/create',async (req,res,next)=>{
     const {body} = req;
 
     try{
-        const result = await db.query(`INSERT INTO ${WORKOUT_TABLE}(name,description,user_id)\
+        const result = await db.query(`INSERT INTO ${WOKROUT_PLAN_TABLE}(name,description,user_id)\
                                 VALUES($1,$2,$3)`,
                                 [body.name,body.description,body.user_id]);
         return res.status(200).send('Success in creation');
@@ -58,7 +58,7 @@ router.delete('/delete',async (req,res)=>{
     const {body} = req;
 
     try{
-        await db.query(`DELETE FROM ${WORKOUT_TABLE} WHERE id=$1`,
+        await db.query(`DELETE FROM ${WOKROUT_PLAN_TABLE} WHERE id=$1`,
                     [body.id]);
 
         return res.status(200).send('delete successful');

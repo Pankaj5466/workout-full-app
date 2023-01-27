@@ -43,4 +43,13 @@ const pool = new Pool({
 module.exports = {
   query: (text, params) => pool.query(text, params),
   getClient:getClient,
+  table:{
+    EXERCISE_TABLE:'exercises',
+    USER_TABLE:'users',
+    WORKOUT_TABLE:'workout',
+    WORKOUT_HAS_EXERCISE_TABLE:'workout_has_exercises',
+    WOKROUT_PLAN_TABLE:'workout_plan',
+    USER_EXERCISE_TABLE:'user_exercise',
+    USER_COMPLETE_TABLE:'user_complete'
+  }
 }
