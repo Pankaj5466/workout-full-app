@@ -1,21 +1,21 @@
-import excerciseList from '../sample-data/data'
 import { initStore } from './store'; //get store updater
-
-const initialExerciseData = excerciseList
 
 const configureStore = () => {
   const actions = {
-    MODIFY_EXERCISE: (curState, exerciseID) => {
+    SET_LOADING: (curState, payload) => {
       // logic of modification
+      curState.us.loading = payload;
       return curState // return new modified state
-    }
-
+    },
+    UNSET_LOADING:(curState,payload)=>{
+        curState.us.loading = payload;
+    },
   }
 
   //pass actions + initial state to store
   initStore(actions, {
-    es: {
-      exerciseList: initialExerciseData
+    us:{
+        loading:0,
     }
   })
 }

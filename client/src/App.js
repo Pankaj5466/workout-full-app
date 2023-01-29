@@ -6,6 +6,7 @@ import CreateDayPlan from './components/dayPlan/CreateDayPlan'
 import './css/common.css'
 import Dashboard from './pages/Dashboard'
 import WorkoutPlan from './pages/WorkoutPlan'
+import SignUp from './pages/Signup'
 
 function App () {
   return (<>
@@ -18,6 +19,7 @@ function App () {
         <Routes>
           <Route path='/' element ={<Dashboard/>}/>
           <Route path='/sign-up' element = {<SignUpPage/>} />
+          <Route path='/sign-up-two' element = {<SignUp/>} />
           <Route path='/exercises' element = {<ExerciseList/>}>
           </Route>
 
