@@ -49,16 +49,19 @@ router.post('/sign-up', async (req,res)=>{
     }
 })
 
-router.get('/sign-in',async (req,res,next)=>{
+router.post('/login',async (req,res,next)=>{
     try{
         const x = await db.query(`SELECT * FROM ${USER_TABLE} WHERE email=$1`,
                     [req.body.email]);
-        
+        if(x.rows.length === 0)
+            return res.status(401).send('User do not exist');
+
         if(x.rows.at(0).password === req.body.password)
         {
 
             req.session.user_id= x.rows.at(0).user_id;
             return res.status(200).send('Success in login');
+            //TO-DO: need to pass some authentication token, which will be used to check if user is authenticated or not
             
         }
         else{
@@ -66,7 +69,8 @@ router.get('/sign-in',async (req,res,next)=>{
         }
     }catch(e){
         console.log('ERROR happenned during login');
-        return res.status(500).send(e);
+        console.log(e);
+        return res.status(500).send(e.toString()); //IMP: convert exception to string
     }
 })
 module.exports = router;

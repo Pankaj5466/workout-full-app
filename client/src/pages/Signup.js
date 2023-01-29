@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import backendServer from '../api/axios-setup';
+import { SIGN_UP_URL } from '../api/url-constant';
 import { useDispatch, useSelector } from '../hooks-store/store';
 
 function SignUp() {
 
   const loadingStatus = useSelector();
-
+/*
   useEffect(()=>{
       // dispatch('SET_LOADING',true);
 
@@ -21,6 +22,7 @@ function SignUp() {
 
 
   },[])
+  */
 
   const [formData, setFormData] = useState({
     email: '',
@@ -42,6 +44,13 @@ function SignUp() {
     event.preventDefault();
     console.log('Submit Handler called\n');
     console.log(formData);
+
+    backendServer.post(SIGN_UP_URL,formData)
+      .then(resposne => {
+        console.log(resposne.data);
+      }).catch(e=>{
+        console.log(e);
+      })
 
 
     

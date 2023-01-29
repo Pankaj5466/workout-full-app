@@ -3,8 +3,8 @@
 import axios from 'axios';
 //(a) Setup Axios Instance 
 const backendServer = axios.create({
-    timeout:1,
-    headers:{'X-Custom-Header':'foobar'}
+    baseURL:'http://localhost:8080',
+    timeout:10000,
 })
 
 //(b) Setup Interceptor
@@ -19,8 +19,8 @@ backendServer.interceptors.request.use(
     (error)=>{
         //Do something with request error
 
-        console.log(error.message);
-        return Promise.reject(error);
+        console.log("Error in config",error.message);
+        // return Promise.reject(error); //IMP: we should not do this, as axios also reject a promise in the
     }
     )
 
@@ -29,15 +29,26 @@ backendServer.interceptors.response.use(
     (response)=>{
         // Any status code that lie within the range of 2xx cause this function to trigger
         // Do something with response data
-        console.log(response.data);
+        // console.log(response.data);
 
         return response;
     },
     (error)=>{
         //Any status codes that falls outside the range of 2xx cause this function to trigger
         // Do something with response error
-        console.log(error.message);
-        return Promise.reject(error);
+        console.error("Error Message::" ,error.message);
+
+        if(error.response)
+        {
+            const e = error;
+            //server return some response
+            console.log(`${e.response.statusText}(${e.response.status}) : ${e.response.data}`);
+            return Promise.reject(error.response);
+        }
+        else{
+            // console.log('Request Not returned by server'); 
+            return Promise.reject('client side error',error);
+        }
     })
 
 export default backendServer;

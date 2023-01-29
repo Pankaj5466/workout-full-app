@@ -7,6 +7,7 @@ import './css/common.css'
 import Dashboard from './pages/Dashboard'
 import WorkoutPlan from './pages/WorkoutPlan'
 import SignUp from './pages/Signup'
+import Login from './pages/Login'
 
 function App () {
   return (<>
@@ -20,6 +21,7 @@ function App () {
           <Route path='/' element ={<Dashboard/>}/>
           <Route path='/sign-up' element = {<SignUpPage/>} />
           <Route path='/sign-up-two' element = {<SignUp/>} />
+          <Route path='/login' element = {<Login/>} />
           <Route path='/exercises' element = {<ExerciseList/>}>
           </Route>
 

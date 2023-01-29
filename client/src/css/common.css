@@ -81,3 +81,36 @@ form label span{
     background-color: #45a049;
   }
   
+
+  /* Login.js */
+  .login-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    margin: 0 auto;
+    padding: 50px;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+  }
+  
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  label {
+    width: 100%;
+    margin-right: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+   
+  }  
