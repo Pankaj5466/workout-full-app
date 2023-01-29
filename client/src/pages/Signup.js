@@ -1,13 +1,25 @@
 import React, { useEffect, useState } from 'react';
+import backendServer from '../api/axios-setup';
 import { useDispatch, useSelector } from '../hooks-store/store';
 
 function SignUp() {
 
   const loadingStatus = useSelector();
-  const dispatch = useDispatch();
 
   useEffect(()=>{
-      dispatch('SET_LOADING',true);
+      // dispatch('SET_LOADING',true);
+
+      const URL = 'https://dummyjson.com/carts/';
+      
+      backendServer.get(URL)
+        .then(response =>{
+          console.log('YES');
+          console.log(response.data);
+        }).catch(e=>{
+          console.log('NO');
+        })
+
+
   },[])
 
   const [formData, setFormData] = useState({

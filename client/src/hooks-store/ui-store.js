@@ -7,9 +7,6 @@ const configureStore = () => {
       curState.us.loading = payload;
       return curState // return new modified state
     },
-    UNSET_LOADING:(curState,payload)=>{
-        curState.us.loading = payload;
-    },
   }
 
   //pass actions + initial state to store
