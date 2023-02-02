@@ -1,6 +1,8 @@
 const express = require('express');
+const jwt = require('jsonwebtoken')
 const db = require('../db');
 const router = new express.Router();
+const auth = require('../middleware/auth')
 
 const USER_TABLE = db.table.USER_TABLE;
 
@@ -11,7 +13,7 @@ router.get('/', (req,res)=>{
     res.status(200).send('Hello There\n');
 })
 
-router.get('/get-all-user',async (req,res,next)=>{
+router.get('/get-all-user',auth,async (req,res,next)=>{
     console.log('will test db query\n');
 
     try{
@@ -37,9 +39,14 @@ router.post('/sign-up', async (req,res)=>{
                     VALUES($1,$2,$3,$4,$5,$6,$7,$8)\
                     RETURNING *`,
                     [user.email,user.password,user.name,user.age,user.weight,user.height,user.gender,user.goal]);
+        
+        const user_id = x.rows.at(0).id;
+        const token = jwt.sign({user_id:user_id},"userauth");
+
         return res.status(201).send({
-            status:'created-user successfully',
-            id:x.rows.at(0).id
+            message:'created-user successfully',
+            user_id:x.rows.at(0).id,
+            token,
         })
 
                 
@@ -59,8 +66,13 @@ router.post('/login',async (req,res,next)=>{
         if(x.rows.at(0).password === req.body.password)
         {
 
-            req.session.user_id= x.rows.at(0).user_id;
-            return res.status(200).send('Success in login');
+            const user_id = x.rows.at(0).id;
+            const token = jwt.sign({user_id:user_id},"userauth");
+
+            return res.status(200).send({
+                user_id,
+                token
+            });
             //TO-DO: need to pass some authentication token, which will be used to check if user is authenticated or not
             
         }

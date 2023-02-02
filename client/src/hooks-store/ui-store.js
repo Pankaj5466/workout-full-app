@@ -7,12 +7,20 @@ const configureStore = () => {
       curState.us.loading = payload;
       return curState // return new modified state
     },
+    SET_TOKEN: (curState,payload) =>{
+      curState.us.token = payload;
+      curState.loginStatus = true;
+      return curState;
+    },
+    
   }
 
   //pass actions + initial state to store
   initStore(actions, {
     us:{
         loading:0,
+        token:'',
+        loginStatus:false
     }
   })
 }

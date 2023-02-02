@@ -40,6 +40,7 @@ function SignUp() {
     setFormData({ ...formData, [name]: value });
   };
 
+  const dispatch = useDispatch();
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log('Submit Handler called\n');
@@ -48,6 +49,9 @@ function SignUp() {
     backendServer.post(SIGN_UP_URL,formData)
       .then(resposne => {
         console.log(resposne.data);
+
+        dispatch('SET_TOKEN',token);
+        
       }).catch(e=>{
         console.log(e);
       })
