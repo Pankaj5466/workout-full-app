@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import backendServer from '../api/axios-setup';
 import { LOGIN_URL } from '../api/url-constant';
+import { useDispatch } from '../hooks-store/store';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,7 +19,10 @@ const Login = () => {
       email,
       password
     }).then(resposne =>{
-      console.log('Login Successful');
+      console.log(resposne.data);
+      dispatch('SET_TOKEN',resposne.data.token);
+
+      navigate('/');
     }).catch(e =>{
       console.log('Login Failed');
       console.log(e);

@@ -9,7 +9,7 @@ const configureStore = () => {
     },
     SET_TOKEN: (curState,payload) =>{
       curState.us.token = payload;
-      curState.loginStatus = true;
+      curState.us.loginStatus = true;
       return curState;
     },
     
