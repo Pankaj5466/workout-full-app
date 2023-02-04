@@ -159,3 +159,19 @@ form label span{
     background-color: #3e8e41;
   }
   
+  /* Add exercise */
+  .image-container {
+    width: 30%;
+    height: auto;
+    text-align: center;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .table-container {
+    max-height: 600px; /* set your desired maximum height */
+    overflow-y: auto;
+  }
