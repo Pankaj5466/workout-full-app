@@ -1,6 +1,5 @@
 const Select =  (props) =>{
     const {options} = props;
-    console.log('OPTIONS:',options);
 
     return (
         <select

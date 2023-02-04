@@ -65,23 +65,22 @@ const MyTable = (props)=>{
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">{row.title + " " + row.id}</TableCell>
-                <TableCell > <div className="image-container"> <img src = {row.img.split(',').at(0)}></img> </div></TableCell>
+                <TableCell > <div className="image-container"> <img onClick = {_ => console.log(row.img)}src = {row.img.split(',').at(0)}></img> </div></TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-              <TablePagination
+    
+     <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
               component="div"
               count={rows.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-    </>
-    )
+              onRowsPerPageChange={handleChangeRowsPerPage}/>
+    </>);
 }
 
 // const targetMuscleOptions = [
@@ -116,18 +115,13 @@ const AddExercise = () =>{
             .catch(e=> console.log('Unable to get all exercise list: ',e))
     },[]);
 
-    console.log(exerciseList.slice(0,10));
+    console.debug(exerciseList.slice(0,10));
 
     
     //TO-DO: the computation in this useEffect is too expensive & its for static value too.
     //please ask precomuted value from backend or fix it in frontend
     useEffect(()=>{
-
-        // const value = exerciseList.map(e => e.target_muscle)
-        //                 .filter((v,i,a) => a.indexOf(v) === i);
-        // console.log('UNIQUE value: ',value);
-
-        
+       
         //get all filter value, either from backend OR calculate at frontend
         const uniqueTargetMuscles = exerciseList.reduce((acc, current) => {
                   const targetMuscles = current.primary_muscle_group.split(';');
@@ -151,8 +145,8 @@ const AddExercise = () =>{
             return acc;
         },[])
 
-        console.log('uniqueTargetMuscles: ',uniqueTargetMuscles);
-        console.log('uniqueEqupment: ',uniqueEqupment);
+        console.debug('uniqueTargetMuscles: ',uniqueTargetMuscles);
+        console.debug('uniqueEqupment: ',uniqueEqupment);
 
         setSearchOptions({
             targetMuscleOptions:uniqueTargetMuscles.map(e => ({value:e,label:e})),
@@ -163,9 +157,8 @@ const AddExercise = () =>{
     },[JSON.stringify(exerciseList)])
 
     const getFilteredExerciseList = () =>{
-        // console.log("filterOption: ",filterOption);
-        // if(filterOption.equipment === '' && filterOption["target-muscle"] === '')
-        //     return exerciseList;
+        if(filterOption.equipment === '' && filterOption["target-muscle"] === '')
+            return exerciseList;
 
         return exerciseList.filter((e,index)=>{
             
@@ -177,7 +170,7 @@ const AddExercise = () =>{
         })
     }
 
-    console.log('getFilteredExerciseList: ',getFilteredExerciseList())
+    console.debug('getFilteredExerciseList: ',getFilteredExerciseList())
 
     return <>
         
