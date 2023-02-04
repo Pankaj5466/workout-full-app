@@ -93,13 +93,10 @@ const AddExercise = () =>{
     }
 
     console.log('getFilteredExerciseList: ',getFilteredExerciseList())
-    useEffect(()=>{
-
-    },[getFilteredExerciseList])
 
     return <>
         {getFilteredExerciseList().length}
-        {exerciseList.slice(0,10).map( e => (<p key={e.id}>{e.title}</p>))}
+        {getFilteredExerciseList().map( e => (<p key={e.id}>{e.title}</p>))}
 
         <div className="search-filter">
             <label htmlFor= 'target-muscle'>
