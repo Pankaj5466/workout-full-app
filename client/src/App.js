@@ -9,6 +9,7 @@ import WorkoutPlan from './pages/WorkoutPlan'
 import SignUp from './pages/Signup'
 import Login from './pages/Login'
 import { useSelector } from './hooks-store/store'
+import Workout from './pages/Workout'
 
 //Login with react-router-v6: https://www.youtube.com/watch?v=2k8NleFjG7I
 //https://www.youtube.com/watch?v=2k8NleFjG7I
@@ -28,19 +29,22 @@ const PrivateRoutes = ()=>{
 function App () {
 
   return (<>
-
-  {/* TO-DO: Add Navigation Menu Here */}
-  <p>Menu Items Here</p>
-  {/* <Link to="/">Home</Link> */}
-  {/* <NavLink to  ="/">Home</NavLink> */}
-
   <div className='main-body'>
+    <p className='my-paragraph'>Paragram check</p>
     <BrowserRouter>
-        <nav>
-            <Link to="/">Home</Link>
-            <br/>
-            <Link to ="/user-details">User Details</Link>
+        <nav className='nav-menu'>
+            <NavLink to="/">Home</NavLink>
+            
+            <NavLink to ="/user-details">User Details</NavLink>
+            
+            <NavLink to = "/workout-plan">Workout Plan </NavLink>
+            
+            {/* <Link to = "/workouts">Workout Details</NavLink> */}
+            <NavLink to ='new-workout'>New Workout</NavLink>
+            <NavLink to ='workout'>Workouts</NavLink>
+
          </nav>
+
         <Routes>
         
           <Route path='/sign-up' element = {<SignUp/>} />
@@ -50,7 +54,11 @@ function App () {
               <Route path='/' element ={<Dashboard/>}/>
               <Route path='/user-details' element = {<div>user-details</div>} />
               <Route path='/sensitive' element = {<div>uu laa laa le</div>} />
+              <Route path = '/workout' element = {<Workout/>}/>
               <Route path = '/workout-plan' element = {<WorkoutPlan/>} />
+
+              <Route path='/new-workout' element={<CreateDayPlan/>}></Route>
+              {/* <Route path = '/workouts' element></Route> */}
 
           </Route>
 {/*   

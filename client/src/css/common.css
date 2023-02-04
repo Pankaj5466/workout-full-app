@@ -114,3 +114,15 @@ form label span{
     width: 100%;
    
   }  
+
+  .nav-menu {
+    display: flex;
+  }
+
+  .nav-menu >* {
+    margin-right: 30px;
+  }
+
+  .my-paragraph{
+    color: yellow;
+  }

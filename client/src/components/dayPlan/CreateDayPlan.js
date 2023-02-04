@@ -84,7 +84,7 @@ const CreateDayPlan = (props) => {
         {dayPlanComponent}
         { showAddUserModal && <Modal title = 'Select Exercise' content = {<ExerciseList handleAddExercise = {handleAddExercise}/>} buttonName = 'Add Excerise(s)' onConfirm = {closeModalHandler}/> }
         { showCreateExerciseModal && <Modal title = 'Create Exercie' content = {<CreateExerciseModal/>} buttonName = 'Create' onConfirm = {()=>{}} /> }
-        {/* { true && <p>Create Exercize</p>} */}
+        {/* { t rue && <p>Create Exercize</p>} */}
         </>
   )
 }
