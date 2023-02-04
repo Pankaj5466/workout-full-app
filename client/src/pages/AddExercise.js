@@ -64,7 +64,12 @@ const MyTable = (props)=>{
                 key={row.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell component="th" scope="row">{row.title + " " + row.id}</TableCell>
+                <TableCell component="th" scope="row">
+                    <h5>{row.title + "|" + row.id}</h5>
+                    <span>Equipments: </span> <span>{row.equipment}</span>
+                    <br/>
+                    <span>Primary Muscle: </span> <span>{row.primary_muscle_group}</span>
+                    </TableCell>
                 <TableCell > <div className="image-container"> <img onClick = {_ => console.log(row.img)}src = {row.img.split(',').at(0)}></img> </div></TableCell>
               </TableRow>
             ))}
@@ -196,7 +201,6 @@ const AddExercise = () =>{
             </label>
         </div>
 
-        {'Total Record:' + getFilteredExerciseList().length}
         <MyTable columns={columns} rows = {getFilteredExerciseList()}/>
     </>
 }
