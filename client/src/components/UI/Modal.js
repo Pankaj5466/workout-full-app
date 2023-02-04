@@ -24,7 +24,6 @@ const ModalOverlay = (props) => {
 }
 
 const Modal = (props) => {
-  console.log('modal called')
 
   return (
         <React.Fragment>

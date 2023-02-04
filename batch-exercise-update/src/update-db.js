@@ -29,7 +29,7 @@ const update = async () =>{
     const flatArray=(arr)=>{
         if(arr.length == 0)
             return '';
-        return arr.reduce((p,c)=>p+"c"+c);
+        return arr.reduce((p,c)=>p+";"+c);
     }
 
     for(let i=0;i<exerciseList.length;i++)

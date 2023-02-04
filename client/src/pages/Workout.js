@@ -1,5 +1,7 @@
 import { useState } from "react";
-import AddExercise from "../modals/AddExercise";
+import Button from "../components/UI/Button";
+import AddExercise from "./AddExercise";
+import Modal from "../components/UI/Modal";
 
 const Workout = () =>{
     const [showModal,setShowModal] = useState(false);
@@ -26,8 +28,13 @@ const Workout = () =>{
         <div>
           <label>Selected User Exercises:</label>
           <div>
-            <button type='button' onClick={()=> setShowModal(!showModal)}>Add Exercise</button>
-            { showModal && <AddExercise/>}
+            <Button type='button' onClick={()=> setShowModal(!showModal)}>Add Exercise</Button>
+            { showModal && (
+                <Modal  title = 'Add Exercise' content = {<AddExercise/>}
+                    buttonName = "Add"
+                    onConfirm = {()=>setShowModal(false)} 
+                    />
+            )}           
           </div>
         </div>
       </form>

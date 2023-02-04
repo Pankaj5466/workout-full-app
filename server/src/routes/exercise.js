@@ -1,7 +1,6 @@
 const express = require('express')
 const router = new express.Router();
 const db = require('../db/index')
-const exerciseList = require('../data/excercise-object');
 
 
 router.get('/get-exercise',async (req,res,next)=>{
@@ -16,7 +15,7 @@ router.get('/get-exercise',async (req,res,next)=>{
         return res.status(200).send(x.rows);
     }catch(e){
         console.log('ERROR happended during get\n');
-        res.status(500).send(e);
+        return res.status(500).send(e);
     }
 });
 

@@ -38,4 +38,21 @@ router.get('/get-user-exercise/:id',async (req,res)=>{
     }
 })
 
+router.get('/get-all-exercise',async (req,res)=>{
+
+    try{
+        const {id} = req.params;
+        const {rows} = await db.query(`SELECT * FROM ${db.table.EXERCISE_TABLE}`);
+        
+        if(rows.length === 0)
+            return res.status(404).send('Exercise NOT found');
+        return res.status(200).send(rows);
+
+
+    }catch(e){
+        console.log('ERROR: in get-exercise-id');
+        return res.status(500).send(e);
+    }
+})
+
 module.exports = router;
