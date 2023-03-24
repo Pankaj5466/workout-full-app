@@ -1,5 +1,4 @@
 ```sql
---userTable
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -98,23 +97,27 @@ CREATE TABLE workout_has_exercises (
     user_exercise_id INTEGER REFERENCES user_exercise(id) ON DELETE CASCADE
 );
 
+-- Record Each WorkoutSession
+CREATE TABLE workout_session (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    workout_id INTEGER NOT NULL,
+    workout_plan_id INTEGER NOT NULL,
+    workout_time TIMESTAMP NOT NULL,
+    user_feedback TEXT   
+);
 -- user_complete table
-CREATE TABLE user_complete (
-    user_id INTEGER REFERENCES users(id),
-    user_exercise_id INTEGER REFERENCES user_exercise(id),
+CREATE TABLE user_exercise_record (
+    session_id INTEGER REFERENCES workout_session(id),
+    exercise_id INTEGER REFERENCES exercises(id),
     date DATE,
     user_difficulty INTEGER,
     calorie INTEGER,
     weight FLOAT,
     rating INTEGER,
     duration INTEGER,
-    PRIMARY KEY (user_id, user_exercise_id)
+    PRIMARY KEY (session_id, exercise_id)
 );
- 
-
-
-
-
 
 ```
 
