@@ -1,0 +1,21 @@
+{
+  "name": "batch-exercise-update",
+  "version": "1.0.0",
+  "description": "update the exercie from source -> exericse-table",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node src/update-db.js",
+    "dev:live": "nodemon node src/update-db.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "pg": "^8.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

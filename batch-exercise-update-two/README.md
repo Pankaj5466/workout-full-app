@@ -1,0 +1,5 @@
+- chalk@4.2.1 for terminal color & better output
+- pg for postgresql connection 
+- nodemon for live testing
+- fs for reading file 
+- path for creating folder absolute path
