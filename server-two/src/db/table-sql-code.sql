@@ -10,7 +10,6 @@ CREATE TABLE website_user(
 	weight INTEGER,
 	height INTEGER,
 	gender CHAR(1),	
-	workout_plan_id INTEGER,
 	CONSTRAINT pk_userid PRIMARY KEY (id),
 	CONSTRAINT gender_check check(gender in ('F','M'))
 -- 	CONSTRAINT fk_planid
@@ -19,7 +18,12 @@ CREATE TABLE website_user(
 DROP TABLE IF EXISTS workout_plan CASCADE;
 CREATE TABLE workout_plan(
 	id SERIAL NOT NULL,
-	CONSTRAINT pk_planid PRIMARY KEY (id)
+	name VARCHAR(250) NOT NULL,
+	details text,
+	user_id INTEGER NOT NULL,
+	CONSTRAINT pk_planid PRIMARY KEY (id),
+	CONSTRAINT fk_userid FOREIGN KEY(user_id)
+		REFERENCES website_user(id)
 );
 
 DROP TABLE IF EXISTS workout CASCADE;
@@ -79,7 +83,6 @@ DROP TABLE IF EXISTS plan_workout CASCADE;
 CREATE TABLE plan_workout(
 	workout_plan_id SERIAL NOT NULL,
 	workout_id INTEGER NOT NULL,
-	name VARCHAR(250) NOT NULL,
 	
 	CONSTRAINT fk_planid FOREIGN KEY (workout_plan_id)
 		REFERENCES workout_plan(id),

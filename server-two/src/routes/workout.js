@@ -68,6 +68,7 @@ router.get('/read', async (req,res,next)=>{
 })
 
 router.get('/update', async (req,res)=>{
+    //if any of the entry in this workout has a progress
     try{
         const {wID} = req.body;
         const x= await db.query('SELECT exercise_id,sequence_no,duration FROM workout_exercise we WHERE we.workout_id = $1',
@@ -79,6 +80,8 @@ router.get('/update', async (req,res)=>{
         console.log('Issue during read');
         return res.status(500).send(e);
     }
-})
+});
+
+
 
 module.exports = router;
