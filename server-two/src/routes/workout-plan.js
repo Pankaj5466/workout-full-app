@@ -24,7 +24,7 @@ router.post('/create', async (req,res)=>{
 
            await db.query('COMMIT');
            
-           return res.status(201).send('success')
+           return res.status(201).send({plan_id})
            
     }catch(e){
         console.log('Issue during workout creationg');
@@ -33,5 +33,22 @@ router.post('/create', async (req,res)=>{
     }
 });
 
+router.get('/read', async (req,res)=>{
+
+    try{
+           const {pID} = req.body;
+           
+           const x = await db.query('SELECT  workout_id FROM plan_workout WHERE workout_plan_id = $1',
+           [pID]);
+            
+           const workoutList = x.rows;
+
+           return res.status(201).send({workoutList});
+           
+    }catch(e){
+        console.log('Issue during workout creationg');
+        return res.status(409).send(e);
+    }
+});
 
 module.exports = router;
