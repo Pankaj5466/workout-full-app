@@ -56,6 +56,20 @@ router.post('/create', async (req,res,next)=>{
 router.get('/read', async (req,res,next)=>{
     try{
         const {wID} = req.body;
+        const x= await db.query('SELECT id,exercise_id,sequence_no,duration FROM workout_exercise we WHERE we.workout_id = $1',
+        [wID]);
+
+        return res.status(200).send(x.rows);
+
+    }catch(e){
+        console.log('Issue during read');
+        return res.status(500).send(e);
+    }
+})
+
+router.get('/update', async (req,res)=>{
+    try{
+        const {wID} = req.body;
         const x= await db.query('SELECT exercise_id,sequence_no,duration FROM workout_exercise we WHERE we.workout_id = $1',
         [wID]);
 
