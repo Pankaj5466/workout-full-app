@@ -3,7 +3,8 @@ import { Routes, Route, BrowserRouter,Navigate, Outlet, Link, NavLink } from 're
 import ExerciseList from './components/exercise/ExerciseList'
 import ExceciseView from './components/exercise/ExerciseView'
 import CreateDayPlan from './components/dayPlan/CreateDayPlan'
-import './css/common.css'
+// import './css/common.css'
+import './css/generic.css'
 import Dashboard from './pages/Dashboard'
 import WorkoutPlan from './pages/WorkoutPlan'
 import SignUp from './pages/Signup'
@@ -33,7 +34,17 @@ function App () {
   return (
     <Layout>
        <Routes>
-        
+       <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
+
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/user-details" element={<div>user-details</div>} />
+              <Route path="/sensitive" element={<div>uu laa laa le</div>} />
+              <Route path="/workout" element={<Workout />} />
+              <Route path="/workout-plan" element={<WorkoutPlan />} />
+
+              <Route path="/new-workout" element={<CreateDayPlan />}></Route>
+
        </Routes>
     </Layout>
   )

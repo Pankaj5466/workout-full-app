@@ -1,23 +1,26 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import classes from './MainNavigation.module.css';
+import "./layout.css"
 
 function MainNavigation() {
 
   return (
-    <header className={classes.header}>
-      <div className={classes.logo}>React Meetups</div>
-      <nav>
-        <ul>
+    <header className='header'>
+      {/* <div className={classes.logo}>React Meetups</div> */}
+      {/* <a> <img></img></a> enable this when you have logo */}
+      {/* <p className={classes['menu-title']}>Workout Planner1</p> */}
+      <p className='menu-title'> Workout Tracker App</p>
+      <nav className='main-nav'>
+        <ul className='main-nav-list'>
           <li>
-            <Link to='/'>All Meetups</Link>
+            <NavLink to='/workout'>Workout</NavLink>
           </li>
-          <li>
-            <Link to='/new-meetup'>Add New Meetup</Link>
-          </li>
+          <li> <NavLink to='/new-meetup'>Workout</NavLink> </li>
+          <li> <NavLink to='/new-meetup'>Workout Planner</NavLink> </li>
         </ul>
-      </nav>
+      </nav> 
     </header>
   );
 }

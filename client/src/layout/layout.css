@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 9.6rem;
+  padding: 0 4.8rem;
+  background-color: #9eced6;
+}
+
+.main-nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.menu-title {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.main-nav-list a:link,
+.main-nav-list a:visited {
+  color: #222;
+  font-size: 1.2rem;
+}
+
+.main-nav-link a:hover,
+.main-nav-link a:active {
+  color: #cf711f;
+}
