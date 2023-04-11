@@ -10,6 +10,7 @@ import "./css/generic.css";
 import { useSelector } from "./hooks-store/store";
 import RootLayout from "./layout/RootLayout";
 import Workout from "./pages/Workout";
+import WorkoutDetailPage,{loader as workoutDetaiLoader} from "./pages/workout/WorkoutDetailPage";
 
 //Login with react-router-v6: https://www.youtube.com/watch?v=2k8NleFjG7I
 //https://www.youtube.com/watch?v=2k8NleFjG7I
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
             // loader: blogPostLoader,
           },
           {
-            path: ':wID',
+            path: ':id',
             element: <WorkoutDetailPage />,
             loader: workoutDetaiLoader,
           },
