@@ -10,11 +10,13 @@ import SignUp from './pages/Signup'
 import Login from './pages/Login'
 import { useSelector } from './hooks-store/store'
 import Workout from './pages/Workout'
+import Layout from './layout/Layout'
 
 //Login with react-router-v6: https://www.youtube.com/watch?v=2k8NleFjG7I
 //https://www.youtube.com/watch?v=2k8NleFjG7I
 
 const PrivateRoutes = ()=>{
+    return <Outlet/>;
     const loginStatus = useSelector()
     .us.loginStatus;
 
@@ -28,52 +30,12 @@ const PrivateRoutes = ()=>{
 }
 function App () {
 
-  return (<>
-  <div className='main-body'>
-    <p className='my-paragraph'>Paragram check</p>
-    <BrowserRouter>
-        <nav className='nav-menu'>
-            <NavLink to="/">Home</NavLink>
-            
-            <NavLink to ="/user-details">User Details</NavLink>
-            
-            <NavLink to = "/workout-plan">Workout Plan </NavLink>
-            
-            {/* <Link to = "/workouts">Workout Details</NavLink> */}
-            <NavLink to ='new-workout'>New Workout</NavLink>
-            <NavLink to ='workout'>Workouts</NavLink>
-
-         </nav>
-
-        <Routes>
+  return (
+    <Layout>
+       <Routes>
         
-          <Route path='/sign-up' element = {<SignUp/>} />
-          <Route path='/login' element = {<Login/>} />
-
-          <Route element = {<PrivateRoutes/>}>
-              <Route path='/' element ={<Dashboard/>}/>
-              <Route path='/user-details' element = {<div>user-details</div>} />
-              <Route path='/sensitive' element = {<div>uu laa laa le</div>} />
-              <Route path = '/workout' element = {<Workout/>}/>
-              <Route path = '/workout-plan' element = {<WorkoutPlan/>} />
-
-              <Route path='/new-workout' element={<CreateDayPlan/>}></Route>
-              {/* <Route path = '/workouts' element></Route> */}
-
-          </Route>
-{/*   
-          <Route path='/exercise/:excerciseID' element = {<ExceciseView/>} />
-
-          <Route path='/dayPlan' element={<CreateDayPlan/>}/>
-          <Route path = '/workout-plan' element = {<WorkoutPlan/>} /> */}
-
-          {/* <Route path='/single-workout-row' element = {<SingleWorkoutRow/>} />
-
-          <Route path='/new-workout-plan' element = {<NewWorkoutPlan/>} /> */}
-        </Routes>
-    </BrowserRouter>
-  </div>
-    </>
+       </Routes>
+    </Layout>
   )
 }
 

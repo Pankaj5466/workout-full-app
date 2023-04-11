@@ -1,0 +1,9 @@
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  label, input, select, textarea {
+    width: 100%;
+  }
+  
