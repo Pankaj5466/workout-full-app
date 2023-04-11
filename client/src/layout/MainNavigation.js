@@ -15,10 +15,10 @@ function MainNavigation() {
       <nav className='main-nav'>
         <ul className='main-nav-list'>
           <li>
-            <NavLink to='/workout'>Workout</NavLink>
+            <Link to='/workout'>Workout</Link>
           </li>
-          <li> <NavLink to='/new-meetup'>Workout</NavLink> </li>
-          <li> <NavLink to='/new-meetup'>Workout Planner</NavLink> </li>
+          <li> <Link to='/new-meetup'>Workout</Link> </li>
+          <li> <Link to='/new-meetup'>Workout Planner</Link> </li>
         </ul>
       </nav> 
     </header>

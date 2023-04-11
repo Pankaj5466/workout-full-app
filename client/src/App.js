@@ -1,39 +1,79 @@
-import SignUpPage from './pages/SignUpPage'
-import { Routes, Route, BrowserRouter,Navigate, Outlet, Link, NavLink } from 'react-router-dom'
-import ExerciseList from './components/exercise/ExerciseList'
-import ExceciseView from './components/exercise/ExerciseView'
-import CreateDayPlan from './components/dayPlan/CreateDayPlan'
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
+
 // import './css/common.css'
-import './css/generic.css'
-import Dashboard from './pages/Dashboard'
-import WorkoutPlan from './pages/WorkoutPlan'
-import SignUp from './pages/Signup'
-import Login from './pages/Login'
-import { useSelector } from './hooks-store/store'
-import Workout from './pages/Workout'
-import Layout from './layout/Layout'
+import "./css/generic.css";
+import { useSelector } from "./hooks-store/store";
+import RootLayout from "./layout/RootLayout";
+import Workout from "./pages/Workout";
 
 //Login with react-router-v6: https://www.youtube.com/watch?v=2k8NleFjG7I
 //https://www.youtube.com/watch?v=2k8NleFjG7I
 
-const PrivateRoutes = ()=>{
-    return <Outlet/>;
-    const loginStatus = useSelector()
-    .us.loginStatus;
+const PrivateRoutes = () => {
+  return <Outlet />;
+  const loginStatus = useSelector().us.loginStatus;
 
+  console.log("loginStatus: ", loginStatus);
 
+  return loginStatus ? <Outlet /> : <Navigate to="/login" />;
+};
 
-    console.log('loginStatus: ',loginStatus);
+//index route is activated when parent route is hit
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    errorElement: <RootLayout />,
+    children: [
+      { index: true, element: <p>Landing Page</p> },
+      {
+        path: '/workout',
+        // element: <WorkoutLayout />, //we do not have general layout for workout. So we will not use it for now
+        //IMPORTANT: passing element here mean, you must use <Outlet> inside WorkoutLayout.js, else child componet of this nested route will not be rendered
+        exact: true,
+        children: [
+          {
+            index: true,
+            element: <Workout/>,
+          },
+          {
+            path: 'create-new',
+            element: <p> New Workout Create Page </p>,
+            // loader: blogPostLoader,
+          },
+          {
+            path: ':wID',
+            element: <WorkoutDetailPage />,
+            loader: workoutDetaiLoader,
+          },
+        ],
+      },
+      // {
+      //   path: '/blog/new',
+      //   element: <NewPostPage />,
+      //   action: newPostAction,
+      // },
+    ],
+  },
+  // {
+  //   path: '/newsletter',
+  //   action: newsletterAction,
+  // },
+]);
 
-    return (
-      loginStatus ? <Outlet/> : <Navigate to='/login'/>
-    )
+function App() {
+  return <RouterProvider router={router} />;
 }
-function App () {
 
-  return (
-    <Layout>
-       <Routes>
+export default App;
+/*
+
+       {/* <Routes>
        <Route path="/sign-up" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
 
@@ -45,9 +85,5 @@ function App () {
 
               <Route path="/new-workout" element={<CreateDayPlan />}></Route>
 
-       </Routes>
-    </Layout>
-  )
-}
-
-export default App
+       </Routes> 
+       */
