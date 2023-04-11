@@ -1,0 +1,23 @@
+.search-filter{
+    display: flex;
+    gap:2rem;
+    justify-content: space-around;
+
+    margin:3rem auto;
+    padding: 2rem 3rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.label-text{
+    display: inline-block;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+}
+/* TO-DO: debug why its not working */
+.filter-select{
+    font-size:1.5rem;
+    max-width: 10rem;
+}

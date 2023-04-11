@@ -27,9 +27,7 @@ const Workout = () => {
               <option value="hard">Hard</option>
             </select>
           </div>
-          <div className="add-exercise-container">
-
-          </div>
+          <div className="add-exercise-container"></div>
           <div className="selected-exercise">
             <div>
               <p className="exercise-text">Selected User Exercises:</p>
@@ -42,17 +40,21 @@ const Workout = () => {
                   <li>Iteam1</li>
                   <li>Iteam1</li>
                 </li>
-                <a type='button' className="btn btn--full" onClick={() => setShowModal(!showModal)}>
-              Add Exercise
-            </a>
-            {showModal && (
-              <Modal
-                title="Add Exercise"
-                content={<AddExercise />}
-                buttonName="Add"
-                onConfirm={() => setShowModal(false)}
-              />
-            )}
+                <a
+                  type="button"
+                  className="btn btn--full"
+                  onClick={() => setShowModal(!showModal)}
+                >
+                  Add Exercise
+                </a>
+                {showModal && (
+                  <Modal
+                    title="Add Exercise"
+                    content={<AddExercise />}
+                    buttonName="Add"
+                    onConfirm={() => setShowModal(false)}
+                  />
+                )}
               </ul>
             </div>
           </div>
