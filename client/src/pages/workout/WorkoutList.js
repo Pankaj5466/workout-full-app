@@ -1,7 +1,9 @@
-import { Outlet, useLoaderData } from "react-router";
+import { Outlet, useLoaderData, useNavigate } from "react-router";
 import { getWorkoutList } from "../../api/api";
 
 const WorkoutTable = ({rows})=>{
+    const navigate = useNavigate();
+
     return (<>
         <table>
             <thead>
@@ -13,7 +15,7 @@ const WorkoutTable = ({rows})=>{
             </thead>   
 
             <tbody>
-                {rows.map((row) => (<tr key = {row.id}>
+                {rows.map((row) => (<tr key = {row.id} onClick={() => navigate(`/workout/list/${row.id}`)}>
                     <td>{row.id}</td>
                     <td>{row.name}</td>
                     <td>{row.description}</td>
