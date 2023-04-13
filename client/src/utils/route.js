@@ -11,7 +11,7 @@ import WorkoutDetail, {
 import { saveWorkout } from "../api/api";
 import WorkoutLayout from "../pages/workout/WorkoutLayout";
 import RootLayout from "../layout/RootLayout";
-import WorkoutList from "../pages/workout/WorkoutList";
+import WorkoutList,{loader as workoutListLoader} from "../pages/workout/WorkoutList";
 
 export const workoutRoute = {};
 //export const workoutRoute3 = {
@@ -49,7 +49,7 @@ export const workoutRouteTwo = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route path="/workout" element={<WorkoutLayout />}>
 
-        <Route path="list" element= {<WorkoutList/>}>
+        <Route path="list" element= {<WorkoutList/>} loader={workoutListLoader}>
             <Route path=":id" element={<WorkoutDetail/>} loader={WorkoutDetailLoader}/>
         </Route>
 
