@@ -3,11 +3,14 @@ import Button from "../components/UI/Button";
 import AddExercise from "./AddExercise";
 import Modal from "../components/UI/Modal";
 import "./workout.css";
+import { Route,Routes } from "react-router";
 
-const Workout = () => {
+const NewWorkout = () => {
   const [showModal, setShowModal] = useState(false);
   return (
     <div className="container">
+    
+    
       <h2 className="heading-secondary">Create Workout</h2>
       <div>
         <form className="workout-form">
@@ -64,4 +67,4 @@ const Workout = () => {
   );
 };
 
-export default Workout;
+export default NewWorkout;

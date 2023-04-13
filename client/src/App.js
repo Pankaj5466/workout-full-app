@@ -3,12 +3,14 @@ import {
   RouterProvider,
   Navigate,
   Outlet,
+  Route,
+  createRoutesFromElements,
 } from "react-router-dom";
 
 import "./css/generic.css";
 import { useSelector } from "./hooks-store/store";
 import RootLayout from "./layout/RootLayout";
-import { workoutRoute } from "./utils/route";
+import { RootRoute, workoutRoute, workoutRouteTwo } from "./utils/route";
 
 //Login with react-router-v6: https://www.youtube.com/watch?v=2k8NleFjG7I
 //https://www.youtube.com/watch?v=2k8NleFjG7I
@@ -24,7 +26,7 @@ const PrivateRoutes = () => {
 
 
 //index route is activated when parent route is hit
-const router = createBrowserRouter([
+const router2 = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
@@ -44,6 +46,8 @@ const router = createBrowserRouter([
   //   action: newsletterAction,
   // },
 ]);
+
+const router = workoutRouteTwo;
 
 function App() {
   return <RouterProvider router={router} />;
