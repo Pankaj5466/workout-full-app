@@ -8,6 +8,9 @@ const WorkoutDetailPage = () => {
         <>
             <h3>Workout Detail Page</h3>
             <p>{workoutData.name} + {workoutData.id}</p>
+            {workoutData.exercises.map((exercise) => (
+                <ExerciseRow/>
+            ))}
         </>
     )
 };

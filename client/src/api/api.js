@@ -26,6 +26,25 @@ export async function getWorkoutList(){
 export async function saveWorkout(data) {
 }
 
+
+export async function getExerciseDetails(id){
+  if(testSetup)
+    // return dummyWorkoutList.find(item => item.id == id); //IMP: use == so that, 1 =="1" can be evaluated as true
+    return {
+      id:1,
+      name:'push-up',
+      description:'push-up',
+      sets:3,
+      reps:10,
+      weight:0,
+      duration:0,
+      rest:0,
+      video:'https://www.youtube.com/watch?v=IODxDxX7oi4',
+      image:'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com'
+    }
+
+  return backendServer.get(`/exercise/${id}`);
+}
 /*
 export async function savePost(data) {
   const post = {

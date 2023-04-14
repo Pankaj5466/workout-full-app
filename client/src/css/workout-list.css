@@ -1,0 +1,44 @@
+
+.workouts{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    row-gap: 30px;
+}
+
+
+.workout-filter{
+    /* background-color: red; */
+    grid-column: 1/-1;
+    align-self: center;
+    border:1px solid balck;
+    padding: 1rem 1rem;
+
+    display: grid;
+    background-color: aliceblue;
+    box-shadow:  1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.workout-filter label{
+    font-size:1.2rem;
+    margin-right:5px;
+}
+
+.workout-filter input{
+    font-size: 1rem;
+    padding: 0.2rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    /* background-color: aqua; */
+    /* box-shadow:  1px 2px rgba(0, 0, 0, 0.1); */
+}
+
+.workout-filter input::placeholder{
+    color:rgb(170, 148, 148);
+}
+
+.refresh-icon{
+    font-size:large;
+    /* margin-left:50rem; */
+    justify-self: right;
+    margin-right: 10px;
+}

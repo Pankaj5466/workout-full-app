@@ -1,5 +1,6 @@
 import { Outlet, useLoaderData, useNavigate } from "react-router";
 import { getWorkoutList } from "../../api/api";
+import "../../css/workout-list.css"
 
 const WorkoutTable = ({rows})=>{
     const navigate = useNavigate();
@@ -29,11 +30,16 @@ const WorkoutList = () => {
     const rows = useLoaderData();
 
     return (
-        <>
+        <div className="workouts">
             <div className="workout-filter">
-                <div>
-                    <label>Workout Name</label>
+                <div className="filter">
+                    <label>Workout Name: </label>
                     <input placeholder="chest workout"></input>
+                </div>                
+                
+                {/* <ion-icon className='refresh-icon' name="refresh-circle-outline"></ion-icon> */}
+                <div  className='refresh-icon'>
+                    <ion-icon name="refresh"></ion-icon>
                 </div>
             </div>
 
@@ -45,7 +51,7 @@ const WorkoutList = () => {
             <div className="workout-details">
                 <Outlet/>
             </div>
-        </>
+        </div>
     )
 }
 
