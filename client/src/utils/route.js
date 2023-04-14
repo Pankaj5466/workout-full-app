@@ -50,6 +50,7 @@ export const workoutRouteTwo = createBrowserRouter(
       <Route path="/workout" element={<WorkoutLayout />}>
 
         <Route path="list" element= {<WorkoutList/>} loader={workoutListLoader}>
+          {/* See: .drawio for BestNestedroutePractice */}
             <Route path=":id" element={<WorkoutDetail/>} loader={WorkoutDetailLoader}/>
         </Route>
 
