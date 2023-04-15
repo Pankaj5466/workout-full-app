@@ -27,7 +27,7 @@ const WorkoutTable = ({rows})=>{
 };
 
 const WorkoutList = () => {
-    const rows = useLoaderData();
+    const rows =[]; //TO-DO: convert to useStateThunk
 
     return (
         <div className="workouts">
@@ -56,7 +56,3 @@ const WorkoutList = () => {
 }
 
 export default WorkoutList;
-
-export const loader = async () => {
-    return await getWorkoutList();
-}

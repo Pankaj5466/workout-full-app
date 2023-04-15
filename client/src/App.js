@@ -4,13 +4,16 @@ import {
   Navigate,
   Outlet,
   Route,
-  createRoutesFromElements,
+  createRoutesFromChildren,
 } from "react-router-dom";
 
 import "./css/generic.css";
 import { useSelector } from "./hooks-store/store";
 import RootLayout from "./layout/RootLayout";
-import { RootRoute, workoutRoute, workoutRouteTwo } from "./utils/route";
+import WorkoutLayout from "./pages/workout/WorkoutLayout";
+import WorkoutList from "./pages/workout/WorkoutList";
+import WorkoutDetailPage from "./pages/workout/WorkoutDetail";
+import NewWorkout from "./pages/NewWorkout";
 
 //Login with react-router-v6: https://www.youtube.com/watch?v=2k8NleFjG7I
 //https://www.youtube.com/watch?v=2k8NleFjG7I
@@ -26,7 +29,7 @@ const PrivateRoutes = () => {
 
 
 //index route is activated when parent route is hit
-const router2 = createBrowserRouter([
+/* const router2 = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
@@ -34,20 +37,27 @@ const router2 = createBrowserRouter([
     children: [
       { index: true, element: <p>Landing Page</p> },
         workoutRoute,
-      // {
-      //   path: '/blog/new',
-      //   element: <NewPostPage />,
-      //   action: newPostAction,
-      // },
-    ],
   },
-  // {
-  //   path: '/newsletter',
-  //   action: newsletterAction,
-  // },
 ]);
+*/
 
-const router = workoutRouteTwo;
+const router = createBrowserRouter(
+  createRoutesFromChildren(
+    <Route path="/" element={<RootLayout />}>
+      <Route path="/workout" element={<WorkoutLayout />}>
+
+        <Route path="list" element= {<WorkoutList/>}>
+          {/* See: .drawio for BestNestedroutePractice */}
+            <Route path=":id" element={<WorkoutDetailPage/>}/>
+        </Route>
+
+        <Route path="edit/:id" element={<p>Edit Workout Page</p>} />
+
+        <Route path="create" element = {<NewWorkout/>}/>
+      </Route>
+    </Route>
+  )
+);
 
 function App() {
   return <RouterProvider router={router} />;

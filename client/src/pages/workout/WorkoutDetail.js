@@ -2,7 +2,10 @@ import { useLoaderData } from "react-router";
 import { getWorkoutDetail } from "../../api/api";
 
 const WorkoutDetailPage = () => {
-    const workoutData = useLoaderData();
+    const workoutData = { //TO-DO: poulate with data from server
+        id: 1,
+        name: "Chest Workout",
+    };
 
     return (
         <>
@@ -16,15 +19,3 @@ const WorkoutDetailPage = () => {
 };
 
 export default WorkoutDetailPage;
-
-// export const loader = ({ params }) => {
-//     const postId = params.id;
-
-//     return getPost(postId);
-//   }
-
-export function loader({ params }) {
-  const wID = params.id;
-
-  return getWorkoutDetail(wID);
-}
