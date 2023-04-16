@@ -22,3 +22,5 @@ then, link both of them.
 database-design,attribute defination, linking table, 
 sql code, node-postgresql integration, table query, optimized table design
 logger, api end point name, queyr table, use transaction, verify via postman, ...extra
+
+# Checkout useEffect guide in use-data.js file

@@ -1,12 +1,5 @@
 import backendServer from "./axios-setup";
 
-const dummyWorkoutList  = [
-  {id:1, name:'chest', description:'push-up', exercises:[1,3,4,5]},
-  {id:2, name:'arms', description:'pull-up', exercises:[1,3,4,5]},
-  {id:3, name:'stomatch', description:'squat', exercises:[1,3,4,5]},
-  {id:4, name:'legs', description:'deadlift', exercises:[1,3,4,5]},
-];
-
 export async function getWorkoutDetail(id){
   //TO-DO: handle page crash issue when id does not exist
   return backendServer.get(`/workout/${id}`);

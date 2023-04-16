@@ -29,7 +29,6 @@ const WorkoutTable = ({rows})=>{
 };
 
 const WorkoutList = () => {
-    // const rows =[]; //TO-DO: convert to useStateThunk
     const [rows,dispatch] = useStateThunk([]);
 
     useEffect(()=>{
@@ -72,6 +71,8 @@ function loadWorkouotList(){
 
         try{
             const {data} = await getList();
+
+            //IMPORTANT: before dispatching the data, you can do some transformation here
 
             dispatch(data);
         }catch(e){
