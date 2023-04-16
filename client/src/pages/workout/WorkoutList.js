@@ -1,6 +1,8 @@
 import { Outlet, useLoaderData, useNavigate } from "react-router";
-import { getWorkoutList } from "../../api/api";
 import "../../css/workout-list.css"
+import { getWorkoutList } from "../../api/api";
+import useStateThunk from "../../components/hooks/use-state-thunk";
+import { useEffect } from "react";
 
 const WorkoutTable = ({rows})=>{
     const navigate = useNavigate();
@@ -27,7 +29,12 @@ const WorkoutTable = ({rows})=>{
 };
 
 const WorkoutList = () => {
-    const rows =[]; //TO-DO: convert to useStateThunk
+    // const rows =[]; //TO-DO: convert to useStateThunk
+    const [rows,dispatch] = useStateThunk([]);
+
+    useEffect(()=>{
+        dispatch(loadWorkouotList());
+    },[])
 
     return (
         <div className="workouts">
@@ -56,3 +63,22 @@ const WorkoutList = () => {
 }
 
 export default WorkoutList;
+
+function loadWorkouotList(){
+
+    return async (dispatch)=>{
+
+        const getList = getWorkoutList; //you can define the function here, or you can import from some common location
+
+        try{
+            const {data} = await getList();
+
+            dispatch(data);
+        }catch(e){
+            console.log('Some Error Happeened during fetching workout list');
+        }
+        finally{
+
+        }
+    }
+}

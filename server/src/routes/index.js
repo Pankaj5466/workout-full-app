@@ -7,6 +7,7 @@ const workoutPlan = require('./workout-plan');
 const progress = require('./progress');
 
 const utils = require('./utils');
+const mockApi = require('./mock-api');
  
 module.exports = (app) => {
   app.use('/user', user);
@@ -16,6 +17,8 @@ module.exports = (app) => {
   app.use('/workout-plan',workoutPlan);
   app.use('/progress',progress);
   app.use('/utils',utils);
+
+  app.use('/mock',mockApi);
 
   //app.use(user) -> will we at direct /
 //   app.use('/photos', photos)

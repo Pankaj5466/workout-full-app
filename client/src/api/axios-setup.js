@@ -3,7 +3,7 @@
 import axios from 'axios';
 //(a) Setup Axios Instance 
 const backendServer = axios.create({
-    baseURL:'http://localhost:8080',
+    baseURL:'http://localhost:8080/mock', //TO-DO: update this mock variable using environment variable later
     timeout:10000,
 })
 
