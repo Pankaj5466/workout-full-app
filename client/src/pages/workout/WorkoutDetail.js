@@ -7,6 +7,7 @@ const WorkoutDetailPage = () => {
     const{ id } = useParams();
     const data = useData(`/workout/${id}`);
 
+    //IMPORTANT: observe that we do not need to create a new state. We can simply extract the needed when data is rerendered
     const transformWorkoutData = ()=>{
         return{
             name: data?.name || '',
