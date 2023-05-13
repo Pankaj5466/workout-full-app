@@ -11,10 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 public class Workout {
     @Id
     @GeneratedValue
@@ -24,6 +20,7 @@ public class Workout {
     private String description; // TO-DO: change to text
 
     @ManyToMany(mappedBy = "workoutList")
+    @JsonIgnore
     private List<WorkoutPlan> planList = new ArrayList<>();
 
     /*  As the join table has additional attribute, we cannot use this shortnotation to create table now.
@@ -36,7 +33,38 @@ public class Workout {
     )
     private List<Exercise> exerciseList = new ArrayList<>();*/
 
-    @JsonIgnore
-    List<Id> exerciseIds = new ArrayList<>();
+    @Transient
+    private List<Long> exerciseIds = new ArrayList<>();
 
+    public List<Long> getExerciseIds() {
+        return exerciseIds;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<WorkoutPlan> getPlanList() {
+        return planList;
+    }
+
+    public void setPlanList(List<WorkoutPlan> planList) {
+        this.planList = planList;
+    }
+
+    protected Workout() {
+
+    }
 }

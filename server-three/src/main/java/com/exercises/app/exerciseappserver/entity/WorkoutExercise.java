@@ -25,11 +25,14 @@ public class WorkoutExercise {
     @JoinColumn(name = "exercise_id")
     private Exercise exercise;
 
-    @Column(name = "sequence_no", nullable = false)
     private int sequenceNo;
 
-    @Column(name = "duration")
     private Integer duration;
+
+    public WorkoutExercise(Workout savedWorkout, Exercise exercise) {
+        this.workout = savedWorkout;
+        this.exercise = exercise;
+    }
 
     // constructors, getters and setters
 }
