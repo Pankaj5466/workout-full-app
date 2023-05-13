@@ -1,5 +1,6 @@
-package com.exercises.app.exerciseappserver.controller;
+package com.exercises.app.exerciseappserver.entity.dto;
 
+import com.exercises.app.exerciseappserver.controller.WorkoutDto;
 import com.exercises.app.exerciseappserver.entity.Exercise;
 import com.exercises.app.exerciseappserver.entity.Workout;
 import com.exercises.app.exerciseappserver.entity.WorkoutExercise;
@@ -8,10 +9,7 @@ import com.exercises.app.exerciseappserver.repository.WorkoutExerciseSpringDataR
 import com.exercises.app.exerciseappserver.repository.WorkoutSpringDataRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -50,5 +48,18 @@ public class WorkoutController {
         }
 
         return workout;
+    }
+
+    @GetMapping("/get/{id}")
+    public WorkoutDto getWorkout(@PathVariable Long id){
+        WorkoutDto workoutDto = new WorkoutDto();
+
+        Workout workout =  workoutRepository.findById(id).get();
+
+        workoutDto.exerciseIds = workout.getExerciseIds();
+        workoutDto.id = workout.getId();
+
+        return workoutDto;
+
     }
 }
