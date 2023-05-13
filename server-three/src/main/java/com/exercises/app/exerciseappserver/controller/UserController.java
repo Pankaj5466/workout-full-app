@@ -28,10 +28,7 @@ public class UserController {
     @PostMapping("create") //or @RequestMapping(value="create",method = RequestMethod.POST)
     public WebsiteUser createUser(@RequestBody WebsiteUser user) {
 
-        String firstName = user.getFirstName();
-        String lastName = user.getLastName();
-
-        WebsiteUser savedUser = repository.save(new WebsiteUser(firstName, lastName));
+        WebsiteUser savedUser = repository.save(user);
         return savedUser; //TO-DO: return id instead of whole user object
     }
 
