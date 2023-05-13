@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("workout")
-public class WorkoutController {
+public class WorkoutPlanController {
 
     @PostMapping("/create")
     public String createWorkout(@RequestBody WorkoutPlan workoutPlan){
