@@ -1,8 +1,9 @@
 package com.exercises.app.exerciseappserver.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Workout {
@@ -12,4 +13,8 @@ public class Workout {
 
     private String name;
     private String description; // TO-DO: change to text
+
+    @ManyToMany(mappedBy = "workoutList")
+    private List<WorkoutPlan> planList = new ArrayList<>();
+
 }

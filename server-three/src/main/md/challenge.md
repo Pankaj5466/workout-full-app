@@ -56,3 +56,10 @@ Why you have written your own getter,setter & constructor for userLevel that acc
 ```
 Its because i want to keep controller clean & keep using it as if userLevel is string.
 ```
+
+- ManyToMany : for /workoutplan/create receive workoutIds form RequestBody & save the workoutList JPA
+```
+    Good Question, see the API 
+    @PostMapping("/create")
+    public WorkoutPlan createWorkout(@RequestBody WorkoutPlan workoutPlan)
+```
