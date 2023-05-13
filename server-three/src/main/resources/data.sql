@@ -4,3 +4,9 @@ INSERT INTO workout(id,name,description) VALUES(2,'workout2', 'description1');
 INSERT INTO workout(id,name,description) VALUES(3,'workout3', 'description1');
 INSERT INTO workout(id,name,description) VALUES(4,'workout4', 'description1');
 INSERT INTO workout(id,name,description) VALUES(5,'workout5', 'description1');
+
+INSERT INTO exercise(id,title) VALUES(1,'title1');
+INSERT INTO exercise(id,title) VALUES(2,'title2');
+INSERT INTO exercise(id,title) VALUES(3,'title3');
+INSERT INTO exercise(id,title) VALUES(4,'title4');
+INSERT INTO exercise(id,title) VALUES(5,'title5');
