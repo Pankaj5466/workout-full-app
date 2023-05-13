@@ -76,4 +76,8 @@ public class WorkoutPlan {
     public void addWorkout(Workout workout) {
         this.workoutList.add(workout);
     }
+
+    public Long getId() {
+        return id;
+    }
 }
