@@ -5,36 +5,51 @@ import com.exercises.app.exerciseappserver.repository.WebsiteUserSpringDataRepos
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("user")
 public class UserController {
 
+
     @Autowired
     private WebsiteUserSpringDataRepository repository;
 
+    //Class Functions Below
     @RequestMapping(value="get",method= RequestMethod.GET)
     public String getuser() {
         return "Hello Wohhh890rld";
     }
 
-    @RequestMapping(value="create",method = RequestMethod.POST)
-    public String createUser(HttpServletRequest request){
+    //TO-DO: Change return type to int , instead of whole user object
+//   @RequestMapping(value="create",method = RequestMethod.POST)
+    @PostMapping("create")
+    public WebsiteUser createUser(@RequestBody WebsiteUser user){
 
-        System.out.println(request);
 
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        repository.save(new WebsiteUser(firstName,lastName));
+//        System.out.println(request);
 
-        return "successh";
+        String firstName = user.getFirstName();
+        String lastName = user.getLastName();
+
+        WebsiteUser savedUser =  repository.save(new WebsiteUser(firstName,lastName));
+        return savedUser; //TO-DO: return id instead of whole user object
     }
+
+    @RequestMapping("{id}")
+    public WebsiteUser getUserById(@PathVariable String id){
+        return repository.findById(Long.parseLong(id)).get();
+    }
+
+//    @RequestMapping("get:id")
+//    public WebsiteUser getUserById(HttpServletRequest request){
+//        Long id = Long.valueOf(request.getParameter("id"));
+//
+//        return repository.findById(id).get();
+//    }
 
     @RequestMapping(value="test",method = RequestMethod.GET)
     public Map<String,String> test(){
@@ -44,5 +59,11 @@ public class UserController {
                 "test3","test393",
 //                "test4","test4",
                 "id","78");
+    }
+
+    @RequestMapping("list")
+    public List<WebsiteUser> listUsers(){
+        return repository.findAll();
+
     }
 }
