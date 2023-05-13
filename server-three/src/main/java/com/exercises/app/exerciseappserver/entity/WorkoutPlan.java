@@ -39,4 +39,8 @@ public class WorkoutPlan {
         this.description = description;
         this.user = user;
     }
+
+    public void setWebsiteUser(WebsiteUser user) {
+        this.user = user;
+    }
 }
