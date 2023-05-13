@@ -39,17 +39,18 @@ public class UserController {
         return savedUser; //TO-DO: return id instead of whole user object
     }
 
+    //user/1
     @RequestMapping("{id}")
     public WebsiteUser getUserById(@PathVariable String id){
         return repository.findById(Long.parseLong(id)).get();
     }
 
-//    @RequestMapping("get:id")
-//    public WebsiteUser getUserById(HttpServletRequest request){
-//        Long id = Long.valueOf(request.getParameter("id"));
-//
-//        return repository.findById(id).get();
-//    }
+    //user/search?name=Pankaj&age=19
+    @GetMapping("search")
+    public String searchUser(@RequestParam(name = "name", defaultValue = "Guest") String userName, @RequestParam int age){
+
+        return userName + " " + age;
+    }
 
     @RequestMapping(value="test",method = RequestMethod.GET)
     public Map<String,String> test(){
