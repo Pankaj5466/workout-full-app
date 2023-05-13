@@ -1,0 +1,1 @@
+INSERT INTO website_user(id,first_name,last_name,email,height,weight,gender) VALUES (1,'John','Doe', 'doe@gmail.com',23,234,'M');

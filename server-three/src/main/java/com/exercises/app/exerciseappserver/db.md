@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS workout_plan CASCADE;
 CREATE TABLE workout_plan(
 	id SERIAL NOT NULL,
 	name VARCHAR(250) NOT NULL,
-	details text,
+	description text,
 	user_id INTEGER NOT NULL,
 	CONSTRAINT pk_planid PRIMARY KEY (id),
 	CONSTRAINT fk_userid FOREIGN KEY(user_id)
@@ -30,7 +30,7 @@ DROP TABLE IF EXISTS workout CASCADE;
 CREATE TABLE workout(
 	id SERIAL NOT NULL,
 	name VARCHAR(250) NOT NULL,
-	details text,
+	description text,
 	CONSTRAINT pk_workoutid PRIMARY KEY (id)
 );
 

@@ -1,14 +1,13 @@
 package com.exercises.app.exerciseappserver.entity;
 
+import com.exercises.app.exerciseappserver.entity.enums.UserLevel;
 import jakarta.persistence.*;
-import org.apache.catalina.User;
-import org.hibernate.annotations.Check;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Target;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class WebsiteUser {
@@ -48,6 +47,11 @@ public class WebsiteUser {
     private LocalDateTime createdDate;
     @UpdateTimestamp
     private LocalDateTime updatedDate;
+
+    /* mappedBy => this is just a linker for hibernate*/
+    /* IMP: there will be no setters for linker type of relationship*/
+    @OneToMany(mappedBy = "user")
+    private List<WorkoutPlan> workoutPlans;
 
     public int getId() {
         return id;
