@@ -1,6 +1,6 @@
-package com.exercises.app.exerciseappserver.entity.dto;
+package com.exercises.app.exerciseappserver.controller;
 
-import com.exercises.app.exerciseappserver.controller.WorkoutDto;
+import com.exercises.app.exerciseappserver.entity.dto.WorkoutDto;
 import com.exercises.app.exerciseappserver.entity.Exercise;
 import com.exercises.app.exerciseappserver.entity.Workout;
 import com.exercises.app.exerciseappserver.entity.WorkoutExercise;
@@ -10,8 +10,6 @@ import com.exercises.app.exerciseappserver.repository.WorkoutSpringDataRepositor
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("workout")

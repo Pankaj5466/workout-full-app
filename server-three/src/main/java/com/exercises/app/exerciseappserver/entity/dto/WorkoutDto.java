@@ -1,4 +1,4 @@
-package com.exercises.app.exerciseappserver.controller;
+package com.exercises.app.exerciseappserver.entity.dto;
 
 import java.util.ArrayList;
 import java.util.List;
