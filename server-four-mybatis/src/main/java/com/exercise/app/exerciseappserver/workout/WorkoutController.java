@@ -1,12 +1,13 @@
 package com.exercise.app.exerciseappserver.workout;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/workout")
+//@RequestMapping("/workout")
 public class WorkoutController {
 
     @Autowired
@@ -17,5 +18,10 @@ public class WorkoutController {
 
         workoutMapper.insertWorkout(workout);
         return workout.id;
+    }
+
+    @GetMapping("/welcome")
+    public String hello() {
+        return "Hello World!";
     }
 }
