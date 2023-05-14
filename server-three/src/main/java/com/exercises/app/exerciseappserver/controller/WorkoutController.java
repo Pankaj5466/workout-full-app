@@ -11,6 +11,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -87,15 +88,23 @@ public class WorkoutController {
 
     }
 
+    /*
+        DELETE FROM workout_exercise we
+        WHERE id IN(x,y,z,.)
+     */
     @PostMapping("/update")
     public Long updateWorkout(@RequestBody WorkoutDto workoutDto){
 
+        //delete from reverse side of relationship
+        // delete from owner side of relationship
+        //insert the updated value.
+
         Workout workout = workoutRepository.findById(workoutDto.id).get();
-        workout.setName(workoutDto.name);
-        workout.setDescription(workoutDto.description);
 
         //delete all the workoutExercise for this workout
         workoutExerciseRepository.deleteAll(workout.getWorkoutExercise());
+//        workout.resetWorkoutExercise();
+
 
         //add new workoutExercise for this workout
         for(int i=0;i<workoutDto.exerciseIds.size();i++){
@@ -121,7 +130,58 @@ public class WorkoutController {
 
         return workout.getId();
     }
+
+    @PostMapping("/update-two/")
+    public WorkoutDto updateWorkoutTwo(@RequestBody WorkoutDto workoutDto) {
+        Workout workout = workoutRepository.findById(workoutDto.id).get();
+        workout.setName(workoutDto.name);
+        workout.setDescription(workoutDto.description);
+
+        //delete old entry
+        List<WorkoutExercise> oldWorkoutExercises = workout.getWorkoutExercise();
+        List<Exercise> oldExercises = oldWorkoutExercises.stream()
+                .map(we -> we.getExercise())
+                .collect(Collectors.toList());
+
+        List<Long> oldExerciseIds = oldExercises.stream()
+                .map(e -> e.getId())
+                .collect(Collectors.toList());
+        System.out.println("oldExerciseIds: " + oldExerciseIds); //just for debug logs
+
+        //go to individual exercise and remove the entry of workoutExercise from exercise.workoutExercise
+        for (Exercise exercise : oldExercises) {
+            exercise.removeWorkoutExercise(oldWorkoutExercises);
+        }
+
+        List<Exercise> exercises = exerciseRepository.findAllById(workoutDto.exerciseIds); //list of all exercise which this workout has
+        List<WorkoutExercise> workoutExercises = new ArrayList<>();
+
+        for (Exercise exercise : exercises) {
+            //remove the entry of workoutExercise from exercise.workoutExercise
+//            exercise.removeWorkoutExercise(workoutExercises);
+
+            WorkoutExercise workoutExercise = new WorkoutExercise();
+
+            workoutExercise.setWorkout(workout);
+            workoutExercise.setExercise(exercise);
+
+            workoutExercises.add(workoutExercise);
+        }
+
+        workout.setWorkoutExercise(workoutExercises);
+        
+        WorkoutDto retworkoutDto = new WorkoutDto();
+        retworkoutDto.id = workout.getId();
+        retworkoutDto.name = workout.getName();
+        retworkoutDto.description = workout.getDescription();
+        
+
+        return retworkoutDto;
+    }
+
 }
+
+
 
 /*
 mark1: do i need to call exerciseRepository.update(exercise) at this point?

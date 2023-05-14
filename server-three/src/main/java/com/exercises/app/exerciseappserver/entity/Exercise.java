@@ -26,7 +26,7 @@ public class Exercise {
     private String guide;
     private String url;
 
-    @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL)
     private List<WorkoutExercise> workoutExercise = new ArrayList<>();
 
     public void addWorkoutExercise(WorkoutExercise workoutExercise) {
@@ -71,5 +71,9 @@ public class Exercise {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public void removeWorkoutExercise(WorkoutExercise workoutExercise) {
+        this.workoutExercise.remove(workoutExercise);
     }
 }
