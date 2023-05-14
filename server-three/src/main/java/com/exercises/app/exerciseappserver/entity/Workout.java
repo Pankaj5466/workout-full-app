@@ -71,7 +71,15 @@ public class Workout {
         this.planList = planList;
     }
 
-    protected Workout() {
+    public Workout() {
 
+    }
+
+    public void addWorkoutExercise(WorkoutExercise workoutExercise) {
+        this.workoutExercise.add(workoutExercise);
+    }
+
+    public List<WorkoutExercise> getWorkoutExercise() {
+        return workoutExercise;
     }
 }
