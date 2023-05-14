@@ -36,9 +36,13 @@ public class Workout {
     @Transient
     private List<Long> exerciseIds = new ArrayList<>();
 
+
     public List<Long> getExerciseIds() {
         return exerciseIds;
     }
+
+    @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL)
+    private List<WorkoutExercise> workoutExercise = new ArrayList<>();
 
     public Long getId() {
         return id;
