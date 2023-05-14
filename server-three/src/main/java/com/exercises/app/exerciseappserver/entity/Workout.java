@@ -41,7 +41,7 @@ public class Workout {
         return exerciseIds;
     }
 
-    @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<WorkoutExercise> workoutExercise = new ArrayList<>();
 
     public Long getId() {

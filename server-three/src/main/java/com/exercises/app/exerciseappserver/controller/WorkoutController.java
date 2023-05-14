@@ -86,6 +86,41 @@ public class WorkoutController {
         return workoutDto;
 
     }
+
+    @PostMapping("/update")
+    public Long updateWorkout(@RequestBody WorkoutDto workoutDto){
+
+        Workout workout = workoutRepository.findById(workoutDto.id).get();
+        workout.setName(workoutDto.name);
+        workout.setDescription(workoutDto.description);
+
+        //delete all the workoutExercise for this workout
+        workoutExerciseRepository.deleteAll(workout.getWorkoutExercise());
+
+        //add new workoutExercise for this workout
+        for(int i=0;i<workoutDto.exerciseIds.size();i++){
+            Long exerciseId = workoutDto.exerciseIds.get(i);
+
+            WorkoutExercise workoutExercise = new WorkoutExercise();
+
+            Exercise exercise = exerciseRepository.findById(exerciseId).get();
+            //(a)
+            workoutExercise.setExercise(exercise); //add exercise reference to workoutExecise table
+            workoutExercise.setWorkout(workout); //add workout reference to workoutExecise table
+
+            //(b)
+            exercise.addWorkoutExercise(workoutExercise); //update the reverse relationship also
+            workout.addWorkoutExercise(workoutExercise); //update the reverse relationship also
+
+            workoutExerciseRepository.save(workoutExercise);
+            //(mark1)
+        }
+
+        //(marrk2: no need of below line, as workout object is already managed by JPA)
+        //Workout savedWorkout = workoutRepository.save(workout);
+
+        return workout.getId();
+    }
 }
 
 /*

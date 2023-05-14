@@ -1,5 +1,6 @@
 package com.exercises.app.exerciseappserver.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -25,7 +26,7 @@ public class Exercise {
     private String guide;
     private String url;
 
-    @OneToMany(mappedBy = "exercise")
+    @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<WorkoutExercise> workoutExercise = new ArrayList<>();
 
     public void addWorkoutExercise(WorkoutExercise workoutExercise) {
