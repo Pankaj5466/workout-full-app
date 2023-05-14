@@ -17,13 +17,9 @@ public class WorkoutController {
         return workout.id;
     }
 
-    @GetMapping("/welcome")
-    public String hello() {
-        return "Hello World!";
-    }
-
     @GetMapping("/{id}")
     public WorkoutDAO getWorkout(@PathVariable int id) {
         return workoutMapper.getWorkout(id);
     }
+
 }
