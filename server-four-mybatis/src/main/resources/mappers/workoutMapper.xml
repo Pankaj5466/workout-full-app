@@ -3,9 +3,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.exercise.app.exerciseappserver.workout.WorkoutMapper">
+
     <insert id="insertWorkout" parameterType="com.exercise.app.exerciseappserver.workout.WorkoutDAO" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO workout (name, description) VALUES (#{name}, #{description})
     </insert>
+
+    <select id="getWorkout" parameterType="java.lang.Integer" resultType="com.exercise.app.exerciseappserver.workout.WorkoutDAO">
+        SELECT * FROM workout WHERE id = #{id}
+    </select>
+
 </mapper>
 
 

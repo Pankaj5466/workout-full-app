@@ -1,10 +1,7 @@
 package com.exercise.app.exerciseappserver.workout;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/workout")
@@ -14,7 +11,7 @@ public class WorkoutController {
     private WorkoutMapper workoutMapper;
 
     @PostMapping("/create")
-    public Long createWorkout(WorkoutDAO workout) {
+    public Long createWorkout(@RequestBody WorkoutDAO workout) {
 
         workoutMapper.insertWorkout(workout);
         return workout.id;
@@ -23,5 +20,10 @@ public class WorkoutController {
     @GetMapping("/welcome")
     public String hello() {
         return "Hello World!";
+    }
+
+    @GetMapping("/{id}")
+    public WorkoutDAO getWorkout(@PathVariable int id) {
+        return workoutMapper.getWorkout(id);
     }
 }
