@@ -73,6 +73,10 @@ public class Exercise {
         this.url = url;
     }
 
+    public List<WorkoutExercise> getWorkoutExercise() {
+        return workoutExercise;
+    }
+
     public void removeWorkoutExercise(WorkoutExercise workoutExercise) {
         this.workoutExercise.remove(workoutExercise);
     }

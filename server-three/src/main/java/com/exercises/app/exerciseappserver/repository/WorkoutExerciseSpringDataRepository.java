@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface WorkoutExerciseSpringDataRepository extends JpaRepository<WorkoutExercise,Long>{
 
+
 }
