@@ -8,5 +8,6 @@ import lombok.Data;
 public class WorkoutExerciseDto {
     public Long workoutId;
     public Long exerciseId;
+    public int sequenceNo;
 
 }

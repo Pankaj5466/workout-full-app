@@ -20,9 +20,9 @@ public class WorkoutService {
         workoutMapper.insertWorkout(workoutDao);
         Long workoutId = workoutDao.id; //id will be updated by mybatis
 
-        for (Long exerciseId : workoutDao.exerciseList) {
-
-            workoutMapper.insertWorkoutExercise(new WorkoutExerciseDto(workoutId,exerciseId));
+        for (int i=0;i<workoutDao.exerciseList.size();i++) {
+            Long exerciseId  = workoutDao.exerciseList.get(i);
+            workoutMapper.insertWorkoutExercise(new WorkoutExerciseDto(workoutId,exerciseId,i));
         }
 
         return 0;

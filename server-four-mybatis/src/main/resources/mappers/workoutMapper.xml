@@ -9,7 +9,7 @@
     </insert>
 
     <insert id="insertWorkoutExercise" parameterType="com.exercise.app.exerciseappserver.workout.WorkoutExerciseDto">
-        INSERT INTO workout_exercise (workout_id, exercise_id) VALUES (#{workoutId}, #{exerciseId})
+        INSERT INTO workout_exercise (workout_id, exercise_id,sequence_no) VALUES (#{workoutId}, #{exerciseId},#{sequenceNo})
     </insert>
 
 
