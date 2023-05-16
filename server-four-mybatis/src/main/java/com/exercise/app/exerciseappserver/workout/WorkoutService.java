@@ -21,9 +21,6 @@ public class WorkoutService {
         Long workoutId = workoutDao.id; //id will be updated by mybatis
 
         for (Long exerciseId : workoutDao.exerciseList) {
-//            Map<String, Long> mMap = new HashMap<>();
-//            mMap.put("workoutId", workoutId);
-//            mMap.put("exerciseId", exerciseId);
 
             workoutMapper.insertWorkoutExercise(new WorkoutExerciseDto(workoutId,exerciseId));
         }
