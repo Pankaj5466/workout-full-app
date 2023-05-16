@@ -17,10 +17,16 @@ public class WorkoutController {
         return workout.id;
     }
 
-//    @GetMapping("/{id}")
-//    public WorkoutDao getWorkout(@PathVariable int id) {
-////        return workoutMapper.getWorkout(id);
-//        return {};
-//    }
+    @GetMapping("/{id}")
+    public WorkoutDao getWorkout(@PathVariable Long id) {
+        WorkoutDao workoutDao = new WorkoutDao();
+
+        workoutDao = workoutService.getWorkout(id);
+
+
+
+        workoutService.getWorkout(id);
+        return workoutDao;
+    }
 
 }

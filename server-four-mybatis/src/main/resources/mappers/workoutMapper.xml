@@ -4,17 +4,18 @@
 
 <mapper namespace="com.exercise.app.exerciseappserver.workout.WorkoutMapper">
 
-    <insert id="insertWorkout" parameterType="com.exercise.app.exerciseappserver.workout.WorkoutDao" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertWorkout" parameterType="com.exercise.app.exerciseappserver.workout.WorkoutDao" useGeneratedKeys="true" keyProperty="id" >
         INSERT INTO workout (name, description) VALUES (#{name}, #{description})
     </insert>
-
-    <select id="getWorkout" parameterType="java.lang.Integer" resultType="com.exercise.app.exerciseappserver.workout.WorkoutDao">
-        SELECT * FROM workout WHERE id = #{id}
-    </select>
 
     <insert id="insertWorkoutExercise" parameterType="com.exercise.app.exerciseappserver.workout.WorkoutExerciseDto">
         INSERT INTO workout_exercise (workout_id, exercise_id) VALUES (#{workoutId}, #{exerciseId})
     </insert>
+
+
+    <select id="getWorkout" parameterType="java.lang.Long" resultType="com.exercise.app.exerciseappserver.workout.WorkoutDao">
+        SELECT * FROM workout WHERE id = #{id}
+    </select>
 
 
 

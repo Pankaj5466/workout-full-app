@@ -17,7 +17,8 @@ public class WorkoutService {
 
     public int saveWorkout(WorkoutDao workoutDao) {
 
-        Long workoutId = workoutMapper.insertWorkout(workoutDao);
+        workoutMapper.insertWorkout(workoutDao);
+        Long workoutId = workoutDao.id; //id will be updated by mybatis
 
         for (Long exerciseId : workoutDao.exerciseList) {
 //            Map<String, Long> mMap = new HashMap<>();
@@ -29,5 +30,10 @@ public class WorkoutService {
 
         return 0;
 
+    }
+
+    public WorkoutDao getWorkout(Long id) {
+
+        return workoutMapper.getWorkout(id);
     }
 }
