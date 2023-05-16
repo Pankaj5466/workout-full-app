@@ -11,14 +11,14 @@ public class WorkoutController {
     private WorkoutMapper workoutMapper;
 
     @PostMapping("/create")
-    public Long createWorkout(@RequestBody WorkoutDAO workout) {
+    public Long createWorkout(@RequestBody WorkoutDao workout) {
 
         workoutMapper.insertWorkout(workout);
         return workout.id;
     }
 
     @GetMapping("/{id}")
-    public WorkoutDAO getWorkout(@PathVariable int id) {
+    public WorkoutDao getWorkout(@PathVariable int id) {
         return workoutMapper.getWorkout(id);
     }
 

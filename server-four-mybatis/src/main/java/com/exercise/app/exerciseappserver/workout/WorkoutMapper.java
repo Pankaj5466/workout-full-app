@@ -3,7 +3,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface WorkoutMapper {
-    public void insertWorkout(WorkoutDAO workout);
+    public void insertWorkout(WorkoutDao workout);
 
-    public WorkoutDAO getWorkout(int id);
+    public WorkoutDao getWorkout(int id);
 }

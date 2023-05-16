@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class WorkoutDAO {
+public class WorkoutDao {
     public Long id;
     public String name;
     public String description;
