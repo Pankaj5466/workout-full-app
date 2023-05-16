@@ -8,18 +8,19 @@ import org.springframework.web.bind.annotation.*;
 public class WorkoutController {
 
     @Autowired
-    private WorkoutMapper workoutMapper;
+    private WorkoutService workoutService;
 
     @PostMapping("/create")
-    public Long createWorkout(@RequestBody WorkoutDao workout) {
+    public Long saveWorkout(@RequestBody WorkoutDao workout) {
 
-        workoutMapper.insertWorkout(workout);
+        workoutService.saveWorkout(workout);
         return workout.id;
     }
 
-    @GetMapping("/{id}")
-    public WorkoutDao getWorkout(@PathVariable int id) {
-        return workoutMapper.getWorkout(id);
-    }
+//    @GetMapping("/{id}")
+//    public WorkoutDao getWorkout(@PathVariable int id) {
+////        return workoutMapper.getWorkout(id);
+//        return {};
+//    }
 
 }

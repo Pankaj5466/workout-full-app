@@ -12,6 +12,10 @@
         SELECT * FROM workout WHERE id = #{id}
     </select>
 
+    <insert id="insertWorkoutExercise" parameterType="com.exercise.app.exerciseappserver.workout.WorkoutExerciseDto">
+        INSERT INTO workout_exercise (workout_id, exercise_id) VALUES (#{workoutId}, #{exerciseId})
+    </insert>
+
 
 
 </mapper>
