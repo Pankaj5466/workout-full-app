@@ -11,6 +11,7 @@ public class WorkoutDao {
     public String name;
     public String description;
     public List<Long> exerciseList;
+    public List<ExerciseDao> exerciseDaoList;
 
     @JsonIgnore
     public String aggExerciseList;

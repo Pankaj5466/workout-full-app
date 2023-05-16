@@ -30,6 +30,7 @@ public class WorkoutService {
 
     public WorkoutDao getWorkout(Long id) {
 
+
         WorkoutDao workoutDao1 = workoutMapper.getWorkoutWithAggList(id);
         workoutDao1.exerciseList =  Arrays.stream(workoutDao1.aggExerciseList.split(","))
                 .map(Long::parseLong)
@@ -37,11 +38,11 @@ public class WorkoutService {
 
         System.out.printf("\t::workout1: %s\n",workoutDao1);
 
+
+
         WorkoutDao workoutDao2 = workoutMapper.getWorkoutWithResultMap(id);
         System.out.printf("\t::workout2: %s\n",workoutDao2);
 
         return workoutDao2;
-
-//        return workoutMapper.getWorkout(id);
     }
 }

@@ -19,8 +19,11 @@
         <id property="id" column="workout_id"/>
         <result property="name" column="workout_name"/>
         <result property="description" column="workout_description"/>
-        <collection property="exerciseList" ofType="java.lang.Long" column="exercise_id">
-            <id property="id" column="exercise_id"/>
+        <collection property="exerciseDaoList" ofType="com.exercise.app.exerciseappserver.workout.ExerciseDao">
+            <!--  VERY IMPORTANT: collection itself is a result map,hence it will NOT HAVE DUPLICATE VALUES      -->
+            <!-- In this case if you want to have all exercise list, then you must select a field which is unique. (as if you select exercise_id  as id => in the map only 1 of such entry will be present -->
+            <id property="sequenceNo" column="sequence_no"/>
+            <result property="id" column="exercise_id"/>
         </collection>
     </resultMap>
 
@@ -30,9 +33,10 @@
 
     <select id="getWorkoutWithResultMap" parameterType="java.lang.Long" resultMap="workoutResultMap">
         SELECT w.id AS workout_id, w.name AS workout_name, w.description AS workout_description,
-        we.exercise_id AS exercise_id
+        we.exercise_id AS exercise_id,
+        we.sequence_no AS sequence_no
         FROM workout w
-        LEFT JOIN workout_exercise we ON w.id = we.workout_id
+        JOIN workout_exercise we ON w.id = we.workout_id
         WHERE w.id = #{workoutId}
     </select>
 
