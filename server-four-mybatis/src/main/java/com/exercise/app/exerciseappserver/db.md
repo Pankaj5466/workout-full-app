@@ -115,4 +115,14 @@ CREATE TABLE workout_session(
 	CONSTRAINT fk_userid FOREIGN KEY (user_id)
 		REFERENCES website_user(id)
 );
+
+CREATE TABLE workout_session(
+    id SERIAL NOT NULL,
+    workout_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    CONSTRAINT pK_sessionid PRIMARY KEY(id),
+	CONSTRAINT fk_workoutid FOREIGN KEY (workout_id)
+		REFERENCES workout(id) 
+);
+
 ```

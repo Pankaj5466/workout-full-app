@@ -17,7 +17,7 @@ public class WorkoutController {
         return workout.id;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("get/{id}")
     public WorkoutDao getWorkout(@PathVariable Long id) {
         WorkoutDao workoutDao = new WorkoutDao();
 

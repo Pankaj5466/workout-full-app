@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.exercise.app.exerciseappserver.workout_plan.WorkoutPlanMapper">
+
+    <insert id="saveWorkoutPlan" parameterType="com.exercise.app.exerciseappserver.workout_plan.WorkoutPlanDto"
+        useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO workout_plan (name, description) VALUES (#{name}, #{description})
+    </insert>
+
+    <insert id="saveWorkoutPlan_Workout" parameterType="com.exercise.app.exerciseappserver.workout_plan.WorkoutPlanDto">
+        INSERT INTO plan_workout (workout_plan_id, workout_id) VALUES (#{workout_plan_id}, #{workout_id})
+    </insert>
+    
+    <select id="getWorkoutPlan" parameterType="java.lang.Long" resultType="com.exercise.app.exerciseappserver.workout_plan.WorkoutPlanDto">
+        SELECT w.id,w.name,w.description,
+        string_agg(pw.workout_id::text,  ',') AS aggWorkoutList
+        FROM workout_plan w
+        INNER JOIN plan_workout pw ON w.id = pw.workout_plan_id
+        WHERE w.id = #{id}
+        GROUP BY (w.id,w.name,w.description)
+    </select>
+
+</mapper>
+
+
+
+
+
+

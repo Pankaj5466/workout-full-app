@@ -19,10 +19,10 @@ CREATE TABLE workout_plan(
 	id SERIAL NOT NULL,
 	name VARCHAR(250) NOT NULL,
 	description text,
-	user_id INTEGER NOT NULL,
-	CONSTRAINT pk_planid PRIMARY KEY (id),
-	CONSTRAINT fk_userid FOREIGN KEY(user_id)
-		REFERENCES website_user(id)
+	user_id INTEGER,
+	CONSTRAINT pk_planid PRIMARY KEY (id)
+--	CONSTRAINT fk_userid FOREIGN KEY(user_id)
+--		REFERENCES website_user(id)
 );
 
 DROP TABLE IF EXISTS workout CASCADE;
@@ -109,6 +109,7 @@ CREATE TABLE workout_session(
 	workout_exercise_id INTEGER NOT NULL,
 	user_id INTEGER NOT NULL,
 	time_taken INTEGER,
+--	TO-DO: Add More
 	CONSTRAINT fk_workout_exerciseid FOREIGN KEY (workout_exercise_id)
 		REFERENCES workout_exercise(id),
 	CONSTRAINT fk_userid FOREIGN KEY (user_id)
