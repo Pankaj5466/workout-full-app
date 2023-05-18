@@ -111,7 +111,7 @@ CREATE TABLE workout_session(
 	time_taken INTEGER,
 --	TO-DO: Add More
 	CONSTRAINT fk_workout_exerciseid FOREIGN KEY (workout_exercise_id)
-		REFERENCES workout_exercise(id),
-	CONSTRAINT fk_userid FOREIGN KEY (user_id)
-		REFERENCES website_user(id)
+		REFERENCES workout_exercise(id)
+--	CONSTRAINT fk_userid FOREIGN KEY (user_id)
+--		REFERENCES website_user(id)
 );

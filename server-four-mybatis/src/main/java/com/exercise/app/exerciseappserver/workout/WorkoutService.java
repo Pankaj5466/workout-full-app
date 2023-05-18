@@ -21,7 +21,7 @@ public class WorkoutService {
 
         for (int i=0;i<workoutDao.exerciseList.size();i++) {
             Long exerciseId  = workoutDao.exerciseList.get(i);
-            workoutMapper.insertWorkoutExercise(new WorkoutExerciseDto(workoutId,exerciseId,i));
+            workoutMapper.insertWorkoutExercise(new WorkoutExerciseDto(workoutId,exerciseId,i+1));
         }
 
         return 0;
